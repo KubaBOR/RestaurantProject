@@ -8,6 +8,9 @@
 *.iml
 
 # Ignore properties:
+*.properties
+
+# Ignore properties:
 src/main/resources/application.properties
 
 # Wazne dane prywatne, ktore nie powinny sie znalezc na gicie:
