@@ -8,6 +8,7 @@
 
 # Application properties:
 *.properties
+
 resources/application.properties
 
 # Wazne dane prywatne, ktore nie powinny sie znalezc na gicie:
