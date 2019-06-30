@@ -3,6 +3,9 @@
 .idea/**/tasks.xml
 .idea/dictionaries
 
+# Application properties:
+resources/application.properties
+
 # Wazne dane prywatne, ktore nie powinny sie znalezc na gicie:
 .idea/**/dataSources/
 .idea/**/dataSources.ids
