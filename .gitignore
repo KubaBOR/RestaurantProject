@@ -7,7 +7,7 @@
 *.xml
 *.iml
 # Ignore properties:
-*.properties
+src/main/resources/application.properties
 
 # Wazne dane prywatne, ktore nie powinny sie znalezc na gicie:
 .idea/**/dataSources/
