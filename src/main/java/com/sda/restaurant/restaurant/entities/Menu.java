@@ -1,9 +1,9 @@
 package com.sda.restaurant.restaurant.entities;
 
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  * This class contains information about the menu items in the restaurant
