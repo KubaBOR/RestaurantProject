@@ -3,13 +3,11 @@
 .idea/**/tasks.xml
 .idea/dictionaries
 .idea
+# Ignore xml, iml:
 *.xml
 *.iml
-
-# Application properties:
+# Ignore properties:
 *.properties
-
-resources/application.properties
 
 # Wazne dane prywatne, ktore nie powinny sie znalezc na gicie:
 .idea/**/dataSources/
