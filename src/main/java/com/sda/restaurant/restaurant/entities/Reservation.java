@@ -10,7 +10,7 @@ import java.util.Calendar;
 import java.util.List;
 
 @Entity
-public class Reservations {
+public class Reservation {
 
     @Id
     @GeneratedValue
@@ -23,9 +23,9 @@ public class Reservations {
     private List<Client> clients = new ArrayList<>();
 
     @ManyToMany(mappedBy = "reservationTables")
-    private List<Tables> tables = new ArrayList<>();
+    private List<Table> tables = new ArrayList<>();
 
-    public Reservations() {
+    public Reservation() {
     }
 
     public Long getId() {
@@ -68,17 +68,17 @@ public class Reservations {
         this.clients = clients;
     }
 
-    public List<Tables> getTables() {
+    public List<Table> getTables() {
         return tables;
     }
 
-    public void setTables(List<Tables> tables) {
+    public void setTables(List<Table> tables) {
         this.tables = tables;
     }
 
     @Override
     public String toString() {
-        return "Reservations{" +
+        return "Reservation{" +
                 "id=" + id +
                 ", dateAndTime=" + dateAndTime +
                 ", isPaid=" + isPaid +
