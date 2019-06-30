@@ -6,6 +6,7 @@
 # Ignore xml, iml:
 *.xml
 *.iml
+
 # Ignore properties:
 src/main/resources/application.properties
 
