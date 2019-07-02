@@ -14,7 +14,7 @@ public class ClientController {
     @Autowired
     private ClientRepository clientRepository;
 
-    @GetMapping
+    @PostMapping("/addNewClient")
     public @ResponseBody String addNewClient(
             @RequestParam String name,
             @RequestParam String surname,
