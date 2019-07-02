@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
+@RequestMapping(path="/")
 public class ClientController {
 
     @Autowired
     private ClientRepository clientRepository;
 
-    @PostMapping("/addNewClient")
+    @GetMapping("/add")
     public @ResponseBody String addNewClient(
             @RequestParam String name,
             @RequestParam String surname,
