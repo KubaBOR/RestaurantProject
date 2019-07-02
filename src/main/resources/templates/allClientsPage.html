@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Clients</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-light navbar-light">
+    <div th:insert="fragments :: mainNavbar"></div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>List of clients</h2>
+            <table class="table table-dark table-hover">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="client: ${allClients}">
+                    <td th:text="${client.name}"></td>
+                    <td th:text="${client.surname}"></td>
+                    <td th:text="${client.email}"></td>
+                    <td th:text="${client.phoneNumber}"></td>
+                    <!--<td>
+                        <form action="#" th:action="@{'/deleteCarAction/{id}'(id=${carList.id})}" th:method="delete">
+                            <input type="hidden" name="_method" value="delete"/>
+                            <input type="submit" class="btn-danger" value="Delete">
+                        </form>
+                    </td>-->
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!--<div class="container">
+            <h2>Add new carList</h2>
+
+            <form action="#" th:action="@{/addCarAction}" th:object="${newCar}" th:method="post">
+                <div class="form-group">
+
+                    <label for="carMake">Make</label>
+                    <input id="carMake" type="text" th:field="${newCar.make}"/>
+
+                    <label for="carModel">Model</label>
+                    <input id="carModel" type="text" th:field="${newCar.model}"/>
+
+                    <label for="carEngine">Engine</label>
+                    <input id="carEngine" type="text" th:field="${newCar.engine}"/>
+
+                    <label for="carPower">HorsePower</label>
+                    <input id="carPower" type="text" th:field="${newCar.horsePower}"/>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Add" class="btn-primary"/>
+                </div>
+            </form>
+        </div>-->
+    </div>
+</div>
+</body>
+</html>

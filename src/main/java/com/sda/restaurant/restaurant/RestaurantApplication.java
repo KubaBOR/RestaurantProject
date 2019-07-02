@@ -1,7 +1,9 @@
 package com.sda.restaurant.restaurant;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 import javax.annotation.PostConstruct;
 import java.util.TimeZone;
@@ -9,6 +11,10 @@ import java.util.TimeZone;
 @SpringBootApplication
 public class RestaurantApplication {
 
+	@Bean
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(RestaurantApplication.class, args);

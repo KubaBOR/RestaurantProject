@@ -1,35 +1,32 @@
 package com.sda.restaurant.restaurant.controllers;
 
 import com.sda.restaurant.restaurant.entities.Client;
-import com.sda.restaurant.restaurant.repositories.ClientRepository;
+import com.sda.restaurant.restaurant.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 @Controller
-@RequestMapping(path="/")
 public class ClientController {
 
+    private ClientService clientService;
+
     @Autowired
-    private ClientRepository clientRepository;
-
-    @GetMapping("/add")
-    public @ResponseBody String addNewClient(
-            @RequestParam String name,
-            @RequestParam String surname,
-            @RequestParam String email,
-            @RequestParam String phoneNumber){
-        Client c = new Client();
-        c.setName(name);
-        c.setSurname(surname);
-        c.setEmail(email);
-        c.setPhoneNumber(phoneNumber);
-
-        clientRepository.save(c);
-        return "Saved";
-
+    public ClientController(ClientService clientService) {
+        this.clientService = clientService;
     }
 
+    @GetMapping("/allClientsPage")
+    public String displayAllClients(Model model){
+        setupModel(model);
+        return "allClientsPage";
+    }
+
+    private void setupModel(Model model){
+        List<Client> allClients = clientService.getAllClients();
+        model.addAttribute("allClients", allClients);
+    }
 }
