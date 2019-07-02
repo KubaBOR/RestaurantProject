@@ -1,3 +1,4 @@
+/*
 package com.sda.restaurant.restaurant.repositories;
 
 import com.sda.restaurant.restaurant.entities.Client;
@@ -34,3 +35,4 @@ public class MenuRepository {
         em.remove(menuToDelete);
     }
 }
+*/

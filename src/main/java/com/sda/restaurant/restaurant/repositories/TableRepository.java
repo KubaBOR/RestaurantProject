@@ -1,3 +1,4 @@
+/*
 package com.sda.restaurant.restaurant.repositories;
 
 import com.sda.restaurant.restaurant.entities.Table;
@@ -29,3 +30,4 @@ public class TableRepository {
         return table;
     }
 }
+*/
