@@ -29,6 +29,11 @@ public class ClientService {
         return clientRepository.save(client1).getId();
     }
 
+    public Client findByEmail(String email) {
+        Client clientToFind = clientRepository.findByEmail(email);
+        return modelMapper.map(clientToFind, Client.class);
+    }
+
     public List<Client> getAllClients(){
         return clientRepository.findAll(Sort.by(Sort.Direction.ASC, "email")).stream()
                 .map(client -> modelMapper.map(client, Client.class))

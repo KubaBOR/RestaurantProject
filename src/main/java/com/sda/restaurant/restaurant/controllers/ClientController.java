@@ -36,6 +36,7 @@ public class ClientController {
         return redirectView;
     }
 
+
     private void setupModel(Model model){
         List<Client> allClients = clientService.getAllClients();
         model.addAttribute("allClients", allClients);
