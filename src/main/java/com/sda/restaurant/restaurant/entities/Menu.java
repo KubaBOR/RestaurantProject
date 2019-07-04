@@ -17,7 +17,7 @@ public class Menu {
     private String category;
     private String name;
     private Float price;
-    private Integer Number;
+    private Integer number;
 
     public Menu() {
     }
@@ -55,11 +55,11 @@ public class Menu {
     }
 
     public Integer getNumber() {
-        return Number;
+        return number;
     }
 
     public void setNumber(Integer number) {
-        Number = number;
+        number = number;
     }
 
     @Override
@@ -69,7 +69,7 @@ public class Menu {
                 ", category='" + category + '\'' +
                 ", name='" + name + '\'' +
                 ", price=" + price +
-                ", Number=" + Number +
+                ", Number=" + number +
                 '}';
     }
 }
