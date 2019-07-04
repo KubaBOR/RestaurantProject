@@ -1,6 +1,6 @@
 package com.sda.restaurant.restaurant.services;
 
-import com.sda.restaurant.restaurant.entities.Menu;
+import com.sda.restaurant.restaurant.model.MenuEntity;
 import com.sda.restaurant.restaurant.repositories.MenuRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,20 +22,20 @@ public class MenuService {
         this.modelMapper = modelMapper;
     }
 
-    public Long saveMenu(Menu menu){
-        Menu menu1 = modelMapper.map(menu,Menu.class);
+    public Long saveMenu(MenuEntity menu){
+        MenuEntity menu1 = modelMapper.map(menu, MenuEntity.class);
         return menuRepository.save(menu1).getId();
     }
 
-    public List<Menu> getAllMenus(){
+    public List<MenuEntity> getAllMenus(){
         return menuRepository.findAll(Sort.by(Sort.Direction.ASC,"number")).stream()
-                .map(menu -> modelMapper.map(menu,Menu.class))
+                .map(menu -> modelMapper.map(menu, MenuEntity.class))
                 .collect(Collectors.toList());
     }
 
-    public Menu findByCategory (String category){
-        Menu menuToFind = menuRepository.findByCategory(category);
-        return modelMapper.map(menuToFind,Menu.class);
+    public MenuEntity findByCategory (String category){
+        MenuEntity menuToFind = menuRepository.findByCategory(category);
+        return modelMapper.map(menuToFind, MenuEntity.class);
     }
 
 }

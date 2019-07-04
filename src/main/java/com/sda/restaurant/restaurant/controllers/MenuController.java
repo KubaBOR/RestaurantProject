@@ -1,6 +1,6 @@
 package com.sda.restaurant.restaurant.controllers;
 
-import com.sda.restaurant.restaurant.entities.Menu;
+import com.sda.restaurant.restaurant.model.MenuEntity;
 import com.sda.restaurant.restaurant.services.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +27,7 @@ public class MenuController {
     }
 
     @PostMapping("/addMenuAction")
-    public RedirectView addNewMenu(@ModelAttribute("newMenu") Menu menu){
+    public RedirectView addNewMenu(@ModelAttribute("newMenu") MenuEntity menu){
         menuService.saveMenu(menu);
         RedirectView redirectView = new RedirectView();
         redirectView.setUrl("/allMenusPage");
@@ -35,8 +35,8 @@ public class MenuController {
     }
 
     private void setupModel(Model model){
-        List<Menu> allMenus = menuService.getAllMenus();
+        List<MenuEntity> allMenus = menuService.getAllMenus();
         model.addAttribute("allMenus",allMenus);
-        model.addAttribute("newMenu",new Menu());
+        model.addAttribute("newMenu",new MenuEntity());
     }
 }

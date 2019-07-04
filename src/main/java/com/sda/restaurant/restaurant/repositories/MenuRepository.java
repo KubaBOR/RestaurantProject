@@ -1,10 +1,10 @@
 package com.sda.restaurant.restaurant.repositories;
 
-import com.sda.restaurant.restaurant.entities.Menu;
+import com.sda.restaurant.restaurant.model.MenuEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface MenuRepository extends JpaRepository <Menu,Long> {
+public interface MenuRepository extends JpaRepository <MenuEntity,Long> {
 
-    Menu findByCategory(String category);
+    MenuEntity findByCategory(String category);
 
 }

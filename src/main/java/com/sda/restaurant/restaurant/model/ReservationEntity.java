@@ -1,31 +1,30 @@
-package com.sda.restaurant.restaurant.entities;
+package com.sda.restaurant.restaurant.model;
 
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 @Entity
-public class Reservation {
+public class ReservationEntity {
     @Id
     @GeneratedValue
     private Long id;
     private Calendar dateAndTime;
     private Boolean isPaid;
     private Float tip;
+// todo - klucz obcy id klienta
+// todo - klucz obcy id tables
 
     //todo - fix
     /*@ManyToMany(mappedBy = "reservationClients")
-    private List<Client> clients = new ArrayList<>();
+    private List<ClientEntity> clients = new ArrayList<>();
 
     @ManyToMany(mappedBy = "reservationTables")
     private List<Table> tables = new ArrayList<>();*/
 
-    public Reservation() {
+    public ReservationEntity() {
     }
 
     public Long getId() {
@@ -63,7 +62,7 @@ public class Reservation {
 
     @Override
     public String toString() {
-        return "Reservation{" +
+        return "ReservationEntity{" +
                 "id=" + id +
                 ", dateAndTime=" + dateAndTime +
                 ", isPaid=" + isPaid +

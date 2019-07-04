@@ -1,6 +1,6 @@
 package com.sda.restaurant.restaurant.services;
 
-import com.sda.restaurant.restaurant.entities.Tables;
+import com.sda.restaurant.restaurant.model.TablesEntity;
 import com.sda.restaurant.restaurant.repositories.TableRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,15 +23,15 @@ public class TableService {
         this.modelMapper = modelMapper;
     }
 
-    public Long saveTable(Tables tables) {
-        Tables tablesToSave = modelMapper.map(tables, Tables.class);
+    public Long saveTable(TablesEntity tables) {
+        TablesEntity tablesToSave = modelMapper.map(tables, TablesEntity.class);
 
         return tableRepository.save(tablesToSave).getId();
     }
 
-    public List<Tables> getAllTables(){
+    public List<TablesEntity> getAllTables(){
         return tableRepository.findAll(Sort.by(Sort.Direction.ASC, "size")).stream()
-                .map(tables -> modelMapper.map(tables, Tables.class))
+                .map(tables -> modelMapper.map(tables, TablesEntity.class))
                 .collect(Collectors.toList());
     }
     public void deleteTableById(Long id){

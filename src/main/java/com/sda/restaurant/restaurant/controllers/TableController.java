@@ -1,6 +1,6 @@
 package com.sda.restaurant.restaurant.controllers;
 
-import com.sda.restaurant.restaurant.entities.Tables;
+import com.sda.restaurant.restaurant.model.TablesEntity;
 import com.sda.restaurant.restaurant.services.TableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +27,7 @@ public class TableController {
     }
 
     @PostMapping("/addNewTableAction")
-    public RedirectView addNewTable(@ModelAttribute("newTable") Tables tables) {
+    public RedirectView addNewTable(@ModelAttribute("newTable") TablesEntity tables) {
         tableService.saveTable(tables);
         RedirectView redirectView = new RedirectView();
         redirectView.setUrl("/tablesPage");
@@ -43,9 +43,9 @@ public class TableController {
     }
 
     private void setupModel(Model model){
-        List<Tables> allTables = tableService.getAllTables();
+        List<TablesEntity> allTables = tableService.getAllTables();
         model.addAttribute("allTables", allTables);
-        model.addAttribute("newTable", new Tables());
+        model.addAttribute("newTable", new TablesEntity());
         model.addAttribute("deleteTableId", "");
     }
 }
