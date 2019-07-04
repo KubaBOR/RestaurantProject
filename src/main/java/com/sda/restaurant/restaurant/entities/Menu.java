@@ -14,10 +14,11 @@ public class Menu {
     @Id
     @GeneratedValue
     private Long id;
+    private Integer number;
     private String category;
     private String name;
     private Float price;
-    private Integer number;
+
 
     public Menu() {
     }
@@ -59,7 +60,7 @@ public class Menu {
     }
 
     public void setNumber(Integer number) {
-        number = number;
+        this.number = number;
     }
 
     @Override
