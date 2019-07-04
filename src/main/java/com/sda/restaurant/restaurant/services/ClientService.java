@@ -38,7 +38,7 @@ public class ClientService {
         return modelMapper.map(clientToFind, Client.class);
     }
 
-    public List<Client> getAllClients(){
+    public List<Client> getAllClients() {
         return clientRepository.findAll(Sort.by(Sort.Direction.ASC, "email")).stream()
                 .map(client -> modelMapper.map(client, Client.class))
                 .collect(Collectors.toList());

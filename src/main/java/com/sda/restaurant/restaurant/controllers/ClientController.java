@@ -21,7 +21,7 @@ public class ClientController {
     }
 
     @GetMapping("/allClientsPage")
-    public String displayAllClients(Model model){
+    public String displayAllClients(Model model) {
         setupModel(model);
         return "allClientsPage";
     }
@@ -33,16 +33,17 @@ public class ClientController {
         redirectView.setUrl("/allClientsPage");
         return redirectView;
     }
-@DeleteMapping("/deleteClientAction/{deleteClientId}")
-public RedirectView deleteClient (@PathVariable Long deleteClientId) {
+
+    @DeleteMapping("/deleteClientAction/{deleteClientId}")
+    public RedirectView deleteClient(@PathVariable Long deleteClientId) {
         clientService.deleteClientById(deleteClientId);
         RedirectView redirectView = new RedirectView();
         redirectView.setUrl("/allClientsPage");
         return redirectView;
-}
+    }
 
 
-    private void setupModel(Model model){
+    private void setupModel(Model model) {
         List<Client> allClients = clientService.getAllClients();
         model.addAttribute("allClients", allClients);
         model.addAttribute("newClient", new Client());
