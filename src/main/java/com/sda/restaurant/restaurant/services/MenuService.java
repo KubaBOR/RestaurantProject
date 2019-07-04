@@ -1,5 +1,6 @@
 package com.sda.restaurant.restaurant.services;
 
+import com.sda.restaurant.restaurant.DTO.MenuDTO;
 import com.sda.restaurant.restaurant.model.MenuEntity;
 import com.sda.restaurant.restaurant.repositories.MenuRepository;
 import org.modelmapper.ModelMapper;
@@ -22,20 +23,20 @@ public class MenuService {
         this.modelMapper = modelMapper;
     }
 
-    public Long saveMenu(MenuEntity menu){
+    public Long saveMenu(MenuDTO menu){
         MenuEntity menu1 = modelMapper.map(menu, MenuEntity.class);
         return menuRepository.save(menu1).getId();
     }
 
-    public List<MenuEntity> getAllMenus(){
+    public List<MenuDTO> getAllMenus(){
         return menuRepository.findAll(Sort.by(Sort.Direction.ASC,"number")).stream()
-                .map(menu -> modelMapper.map(menu, MenuEntity.class))
+                .map(menu -> modelMapper.map(menu, MenuDTO.class))
                 .collect(Collectors.toList());
     }
 
-    public MenuEntity findByCategory (String category){
+    public MenuDTO findByCategory (String category){
         MenuEntity menuToFind = menuRepository.findByCategory(category);
-        return modelMapper.map(menuToFind, MenuEntity.class);
+        return modelMapper.map(menuToFind, MenuDTO.class);
     }
 
 }
