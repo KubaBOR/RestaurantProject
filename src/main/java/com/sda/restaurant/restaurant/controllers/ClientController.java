@@ -1,5 +1,6 @@
 package com.sda.restaurant.restaurant.controllers;
 
+import com.sda.restaurant.restaurant.DTO.ClientDTO;
 import com.sda.restaurant.restaurant.model.ClientEntity;
 import com.sda.restaurant.restaurant.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class ClientController {
     }
 
     @PostMapping("/addClientAction")
-    public RedirectView addNewClient(@ModelAttribute("newClient") ClientEntity client) {
+    public RedirectView addNewClient(@ModelAttribute("newClient") ClientDTO client) {
         clientService.saveClient(client);
         RedirectView redirectView = new RedirectView();
         redirectView.setUrl("/allClientsPage");
@@ -44,7 +45,7 @@ public class ClientController {
 
 
     private void setupModel(Model model) {
-        List<ClientEntity> allClients = clientService.getAllClients();
+        List<ClientDTO> allClients = clientService.getAllClients();
         model.addAttribute("allClients", allClients);
         model.addAttribute("newClient", new ClientEntity());
         model.addAttribute("deleteClientId", "");

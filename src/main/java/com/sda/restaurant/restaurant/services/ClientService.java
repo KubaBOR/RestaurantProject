@@ -1,5 +1,6 @@
 package com.sda.restaurant.restaurant.services;
 
+import com.sda.restaurant.restaurant.DTO.ClientDTO;
 import com.sda.restaurant.restaurant.model.ClientEntity;
 import com.sda.restaurant.restaurant.repositories.ClientRepository;
 import org.modelmapper.ModelMapper;
@@ -23,10 +24,10 @@ public class ClientService {
         this.modelMapper = modelMapper;
     }
 
-    public Long saveClient(ClientEntity client) {
-        ClientEntity client1 = modelMapper.map(client, ClientEntity.class);
+    public Long saveClient(ClientDTO client) {
+        ClientEntity clientEntity = modelMapper.map(client, ClientEntity.class);
 
-        return clientRepository.save(client1).getId();
+        return clientRepository.save(clientEntity).getId();
     }
 
     public void deleteClientById(Long id) {
@@ -38,9 +39,9 @@ public class ClientService {
         return modelMapper.map(clientToFind, ClientEntity.class);
     }
 
-    public List<ClientEntity> getAllClients() {
+    public List<ClientDTO> getAllClients() {
         return clientRepository.findAll(Sort.by(Sort.Direction.ASC, "email")).stream()
-                .map(client -> modelMapper.map(client, ClientEntity.class))
+                .map(client -> modelMapper.map(client, ClientDTO.class))
                 .collect(Collectors.toList());
     }
 }
