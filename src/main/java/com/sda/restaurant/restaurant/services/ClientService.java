@@ -29,6 +29,10 @@ public class ClientService {
         return clientRepository.save(client1).getId();
     }
 
+    public void deleteClientById(Long id) {
+        clientRepository.deleteById(id);
+    }
+
     public Client findByEmail(String email) {
         Client clientToFind = clientRepository.findByEmail(email);
         return modelMapper.map(clientToFind, Client.class);

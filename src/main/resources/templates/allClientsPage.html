@@ -35,12 +35,12 @@
                     <td th:text="${client.surname}"></td>
                     <td th:text="${client.email}"></td>
                     <td th:text="${client.phoneNumber}"></td>
-                    <!--<td>
+                    <td>
                         <form action="#" th:action="@{'/deleteClientAction/{id}'(id=${client.id})}" th:method="delete">
                             <input type="hidden" name="_method" value="delete"/>
-                            <input type="submit" class="btn btn-danger" value="Delete">
+                            <input type="submit" class="btn btn-outline-danger" value="Delete">
                         </form>
-                    </td>-->
+                    </td>
                 </tr>
                 </tbody>
             </table>
