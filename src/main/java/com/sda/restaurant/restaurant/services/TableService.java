@@ -1,5 +1,6 @@
 package com.sda.restaurant.restaurant.services;
 
+import com.sda.restaurant.restaurant.DTO.TablesDTO;
 import com.sda.restaurant.restaurant.model.TablesEntity;
 import com.sda.restaurant.restaurant.repositories.TableRepository;
 import org.modelmapper.ModelMapper;
@@ -23,15 +24,15 @@ public class TableService {
         this.modelMapper = modelMapper;
     }
 
-    public Long saveTable(TablesEntity tables) {
+    public Long saveTable(TablesDTO tables) {
         TablesEntity tablesToSave = modelMapper.map(tables, TablesEntity.class);
 
         return tableRepository.save(tablesToSave).getId();
     }
 
-    public List<TablesEntity> getAllTables(){
+    public List<TablesDTO> getAllTables(){
         return tableRepository.findAll(Sort.by(Sort.Direction.ASC, "size")).stream()
-                .map(tables -> modelMapper.map(tables, TablesEntity.class))
+                .map(tables -> modelMapper.map(tables, TablesDTO.class))
                 .collect(Collectors.toList());
     }
     public void deleteTableById(Long id){
