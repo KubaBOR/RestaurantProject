@@ -3,25 +3,26 @@ package com.sda.restaurant.restaurant.entities;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
 
 /**
  * This class is for table object used in restaurants.
  */
 @Entity
-public class Table {
+@Table(name = "Tables")
+public class Tables {
     @Id
     @GeneratedValue
     private Long id;
 
     private int size;
-    private int tableNumber;
 
-    public Table() {
+    public Tables() {
     }
 
-    public Table(int size, int tableNumber) {
+    public Tables(int size) {
         this.size = size;
-        this.tableNumber = tableNumber;
     }
 
     public Long getId() {
@@ -40,20 +41,11 @@ public class Table {
         this.size = size;
     }
 
-    public int getTableNumber() {
-        return tableNumber;
-    }
-
-    public void setTableNumber(int tableNumber) {
-        this.tableNumber = tableNumber;
-    }
-
     @Override
     public String toString() {
-        return "Table{" +
+        return "Tables{" +
                 "id=" + id +
                 ", size=" + size +
-                ", tableNumber=" + tableNumber +
                 '}';
     }
 }
