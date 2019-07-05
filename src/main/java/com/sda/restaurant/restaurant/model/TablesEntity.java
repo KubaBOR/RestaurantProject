@@ -1,9 +1,8 @@
 package com.sda.restaurant.restaurant.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -15,15 +14,15 @@ public class TablesEntity {
     @Id
     @GeneratedValue
     private Long id;
-
     private int size;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="table_id",referencedColumnName = "id")
+    private ReservationEntity reservationEntity;
 
     public TablesEntity() {
     }
 
-    public TablesEntity(int size) {
-        this.size = size;
-    }
 
     public Long getId() {
         return id;
@@ -41,11 +40,11 @@ public class TablesEntity {
         this.size = size;
     }
 
-    @Override
-    public String toString() {
-        return "TablesEntity{" +
-                "id=" + id +
-                ", size=" + size +
-                '}';
+    public ReservationEntity getReservationEntity() {
+        return reservationEntity;
+    }
+
+    public void setReservationEntity(ReservationEntity reservationEntity) {
+        this.reservationEntity = reservationEntity;
     }
 }

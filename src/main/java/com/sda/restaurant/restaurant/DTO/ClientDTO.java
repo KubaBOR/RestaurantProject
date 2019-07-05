@@ -60,7 +60,7 @@ public class ClientDTO {
 
     @Override
     public String toString() {
-        return "ClientDTO{" +
+        return "ClientEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +

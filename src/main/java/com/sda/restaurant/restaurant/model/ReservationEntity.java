@@ -1,10 +1,10 @@
 package com.sda.restaurant.restaurant.model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class ReservationEntity {
@@ -18,13 +18,30 @@ public class ReservationEntity {
 // todo - klucz obcy id tables
 
     //todo - fix
-    /*@ManyToMany(mappedBy = "reservationClients")
-    private List<ClientEntity> clients = new ArrayList<>();
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "client_id", referencedColumnName = "id")
+    private ClientEntity clientEntity;
 
-    @ManyToMany(mappedBy = "reservationTables")
-    private List<Table> tables = new ArrayList<>();*/
+    @OneToMany
+    private Set<TablesEntity> tables;
 
     public ReservationEntity() {
+    }
+
+    public ReservationEntity(Calendar dateAndTime, Boolean isPaid, Float tip, ClientEntity clientEntity) {
+        this.dateAndTime = dateAndTime;
+        this.isPaid = isPaid;
+        this.tip = tip;
+        this.clientEntity = clientEntity;
+        this.clientEntity.setReservationEntity(this);
+    }
+
+    public ReservationEntity(Calendar dateAndTime, Boolean isPaid, Float tip, ClientEntity clientEntity, Set<TablesEntity> tables) {
+        this.dateAndTime = dateAndTime;
+        this.isPaid = isPaid;
+        this.tip = tip;
+        this.clientEntity = clientEntity;
+        this.tables = tables;
     }
 
     public Long getId() {
@@ -59,14 +76,19 @@ public class ReservationEntity {
         this.tip = tip;
     }
 
+    public ClientEntity getClientEntity() {
+        return clientEntity;
+    }
 
-    @Override
-    public String toString() {
-        return "ReservationEntity{" +
-                "id=" + id +
-                ", dateAndTime=" + dateAndTime +
-                ", isPaid=" + isPaid +
-                ", tip=" + tip +
-                '}';
+    public void setClientEntity(ClientEntity clientEntity) {
+        this.clientEntity = clientEntity;
+    }
+
+    public Set<TablesEntity> getTables() {
+        return tables;
+    }
+
+    public void setTables(Set<TablesEntity> tables) {
+        this.tables = tables;
     }
 }

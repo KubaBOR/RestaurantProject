@@ -1,10 +1,7 @@
 package com.sda.restaurant.restaurant.model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="ClientEntity")
@@ -17,6 +14,9 @@ public class ClientEntity {
     private String surname;
     private String email;
     private String phoneNumber;
+
+    @OneToOne(mappedBy = "clientEntity")
+    private ReservationEntity reservationEntity;
 
     public ClientEntity() {
     }
@@ -61,14 +61,11 @@ public class ClientEntity {
         this.phoneNumber = phoneNumber;
     }
 
-    @Override
-    public String toString() {
-        return "ClientEntity{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", email='" + email + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                '}';
+    public ReservationEntity getReservationEntity() {
+        return reservationEntity;
+    }
+
+    public void setReservationEntity(ReservationEntity reservationEntity) {
+        this.reservationEntity = reservationEntity;
     }
 }
