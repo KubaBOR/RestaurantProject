@@ -29,10 +29,10 @@ public class ReservationController {
         return "allReservationsPage";
     }
     @PostMapping("/addReservationAction")
-    public RedirectView addNewReservation(@ModelAttribute("newReservation") ReservationDTO reservationDTO){
+    public RedirectView addNewReservation(@ModelAttribute ReservationDTO reservationDTO){
         reservationService.saveReservation(reservationDTO);
         RedirectView redirectView = new RedirectView();
-        redirectView.setUrl("/allReservations");
+        redirectView.setUrl("/allReservationsPage");
         return redirectView;
     }
     private void setupModel(Model model){

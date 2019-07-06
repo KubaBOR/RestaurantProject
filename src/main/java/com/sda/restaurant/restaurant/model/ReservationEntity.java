@@ -1,7 +1,10 @@
 package com.sda.restaurant.restaurant.model;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
@@ -11,7 +14,8 @@ public class ReservationEntity {
     @Id
     @GeneratedValue
     private Long id;
-    private Calendar dateAndTime;
+    @DateTimeFormat(pattern = "dd/MM/yyyy'T'hh:mm")
+    private LocalDateTime dateAndTime;
     private Boolean isPaid;
     private Float tip;
 // todo - klucz obcy id klienta
@@ -28,7 +32,7 @@ public class ReservationEntity {
     public ReservationEntity() {
     }
 
-    public ReservationEntity(Calendar dateAndTime, Boolean isPaid, Float tip, ClientEntity clientEntity) {
+    public ReservationEntity(LocalDateTime dateAndTime, Boolean isPaid, Float tip, ClientEntity clientEntity) {
         this.dateAndTime = dateAndTime;
         this.isPaid = isPaid;
         this.tip = tip;
@@ -36,7 +40,7 @@ public class ReservationEntity {
         this.clientEntity.setReservationEntity(this);
     }
 
-    public ReservationEntity(Calendar dateAndTime, Boolean isPaid, Float tip, ClientEntity clientEntity, Set<TablesEntity> tables) {
+    public ReservationEntity(LocalDateTime dateAndTime, Boolean isPaid, Float tip, ClientEntity clientEntity, Set<TablesEntity> tables) {
         this.dateAndTime = dateAndTime;
         this.isPaid = isPaid;
         this.tip = tip;
@@ -52,11 +56,11 @@ public class ReservationEntity {
         this.id = id;
     }
 
-    public Calendar getDateAndTime() {
+    public LocalDateTime getDateAndTime() {
         return dateAndTime;
     }
 
-    public void setDateAndTime(Calendar dateAndTime) {
+    public void setDateAndTime(LocalDateTime dateAndTime) {
         this.dateAndTime = dateAndTime;
     }
 

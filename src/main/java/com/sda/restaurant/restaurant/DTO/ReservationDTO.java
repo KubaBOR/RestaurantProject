@@ -1,13 +1,17 @@
 package com.sda.restaurant.restaurant.DTO;
 
-import java.util.Calendar;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class ReservationDTO {
 
     private Long id;
-    private Calendar dateAndTime;
-    private Boolean isPaid;
+    //@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    private LocalDateTime dateAndTime;
+    private Boolean isPaid = false;
     private Float tip;
     private ClientDTO client;
     private List<TablesDTO> tables;
@@ -23,11 +27,11 @@ public class ReservationDTO {
         this.id = id;
     }
 
-    public Calendar getDateAndTime() {
+    public LocalDateTime getDateAndTime() {
         return dateAndTime;
     }
 
-    public void setDateAndTime(Calendar dateAndTime) {
+    public void setDateAndTime(LocalDateTime dateAndTime) {
         this.dateAndTime = dateAndTime;
     }
 
