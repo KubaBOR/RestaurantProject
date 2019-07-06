@@ -15,7 +15,8 @@ public class ClientEntity {
     private String email;
     private String phoneNumber;
 
-    @OneToOne(mappedBy = "clientEntity")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="client_id",referencedColumnName = "id")
     private ReservationEntity reservationEntity;
 
     public ClientEntity() {

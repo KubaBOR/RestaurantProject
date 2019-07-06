@@ -33,7 +33,7 @@
                 <tbody>
                 <tr th:each="reservation: ${allReservations}">
                     <td th:text="${reservation.dateAndTime}"></td>
-                    <!--<td th:text="${reservation.isPaid}"></td>-->
+                    <td th:text="${reservation.isPaid} ? 'Paid' : 'Not Paid'"></td>
                     <td th:text="${reservation.tip}"></td>
                     <!-- todo - display clients and tables -->
                     <td th:text="${reservation.client}"></td>
@@ -74,14 +74,24 @@
                            type="text" th:field="${newReservation.tables}"/>
 
 -->
-                   <!-- <legend>Client</legend>
-                    <div th:each="reservation: ${allReservations}">
+                    <legend>Select Client</legend>
+                    <div th:each="client: ${allClients}">
                         <input type="radio"
-                               id="clientReserving"
-                               th:field="${newReservation.clientEntity}"
+                               id="chosenClient"
+                               th:field="${newReservation.client}"
                                th:value="${client.surname}"
                                th:text="${client.surname}">
-                    </div>-->
+                    </div>
+
+                    <legend>Select Table</legend>
+                    <div th:each="tables: ${allTables}">
+                        <input type="checkbox"
+                               id="chosenTable"
+                               th:field="${newReservation.tables}"
+                               th:value="${tables.size}"
+                               th:text="${tables.size}">
+                    </div>
+
                 </div>
                 <div class="form-group text-center">
                     <input type="submit" value="Add" class="btn btn-outline-primary"/>

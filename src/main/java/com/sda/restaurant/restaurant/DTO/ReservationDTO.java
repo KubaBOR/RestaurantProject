@@ -13,7 +13,7 @@ public class ReservationDTO {
     private LocalDateTime dateAndTime;
     private Boolean isPaid = false;
     private Float tip;
-    private ClientDTO client;
+    private List<ClientDTO> client;
     private List<TablesDTO> tables;
 
     public ReservationDTO() {
@@ -51,11 +51,11 @@ public class ReservationDTO {
         this.tip = tip;
     }
 
-    public ClientDTO getClient() {
+    public List<ClientDTO> getClient() {
         return client;
     }
 
-    public void setClient(ClientDTO client) {
+    public void setClient(List<ClientDTO> client) {
         this.client = client;
     }
 

@@ -2,7 +2,9 @@ package com.sda.restaurant.restaurant.controllers;
 
 import com.sda.restaurant.restaurant.DTO.ReservationDTO;
 import com.sda.restaurant.restaurant.model.ReservationEntity;
+import com.sda.restaurant.restaurant.services.ClientService;
 import com.sda.restaurant.restaurant.services.ReservationService;
+import com.sda.restaurant.restaurant.services.TableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,9 +20,15 @@ public class ReservationController {
 
     private ReservationService reservationService;
 
+    private ClientService clientService;
+
+    private TableService tableService;
+
     @Autowired
-    public ReservationController(ReservationService reservationService) {
+    public ReservationController(ReservationService reservationService, ClientService clientService, TableService tableService) {
         this.reservationService = reservationService;
+        this.clientService = clientService;
+        this.tableService = tableService;
     }
 
     @GetMapping("/allReservationsPage")
@@ -38,6 +46,8 @@ public class ReservationController {
     private void setupModel(Model model){
         List<ReservationDTO> allReservations = reservationService.getAllReservations();
         model.addAttribute("allReservations", allReservations);
+        model.addAttribute("allClients", clientService.getAllClients());
+        model.addAttribute("allTables", tableService.getAllTables());
         model.addAttribute("newReservation", new ReservationEntity());
     }
 }
