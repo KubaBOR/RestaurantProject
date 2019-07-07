@@ -39,4 +39,7 @@ public class MenuService {
         return modelMapper.map(menuToFind, MenuDTO.class);
     }
 
+    public void deleteMenuById(Long id){
+        menuRepository.deleteById(id);
+    }
 }
