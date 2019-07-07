@@ -40,7 +40,10 @@
                     <td th:text="${reservation.tables}"></td>
 
                     <td>
-                        <!-- todo - deleteAction -->
+                        <form action="#" th:action="@{'/deleteReservationAction/{id}'(id=${reservation.id})}" th:method="delete">
+                            <input type="hidden" name="_method" value="delete"/>
+                            <input type="submit" class="btn btn-outline-danger" value="Delete">
+                        </form>
                     </td>
                 </tr>
                 </tbody>

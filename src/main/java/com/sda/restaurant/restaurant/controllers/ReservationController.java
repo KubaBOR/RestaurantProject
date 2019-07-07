@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.time.LocalDateTime;
@@ -54,6 +52,14 @@ public class ReservationController {
         model.addAttribute("allTables", tableService.getAllTables());
         model.addAttribute("reservationForm", new ReservationForm());
     }
+    @DeleteMapping("/deleteReservationAction/{deleteReservationId}")
+    public RedirectView deleteReservation(@PathVariable Long deleteReservationId) {
+        reservationService.deleteReservationById(deleteReservationId);
+        RedirectView redirectView = new RedirectView();
+        redirectView.setUrl("/allReservationsPage");
+        return redirectView;
+    }
+
 
     public static class ReservationForm{
         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)

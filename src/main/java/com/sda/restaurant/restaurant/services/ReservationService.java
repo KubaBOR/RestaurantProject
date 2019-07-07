@@ -35,4 +35,8 @@ public class ReservationService {
                 .collect(Collectors.toList());
     }
 
+    public void deleteReservationById(Long id){
+        reservationRepository.deleteById(id);
+    }
+
 }
