@@ -38,6 +38,7 @@
                     <!-- todo - display clients and tables -->
                     <td th:text="${reservation.client}"></td>
                     <td th:text="${reservation.tables}"></td>
+
                     <td>
                         <!-- todo - deleteAction -->
                     </td>
@@ -81,14 +82,13 @@
                                th:text="${client.surname}"/>
                     </select>
 
-                    <!--<legend>Select Table</legend>
-                    <div th:each="tables: ${allTables}">
-                        <input type="checkbox"
-                               id="chosenTable"
-                               th:field="${newReservation.tables}"
-                               th:value="${tables.size}"
-                               th:text="${tables.size}">
-                    </div> -->
+                    <legend>Select Table</legend>
+                    <select th:field="${reservationForm.tablesId}" name="tables">
+                        <option th:each="tables : ${allTables}"
+                                th:value="${tables.getId()}"
+                                th:text="${tables.size}"/>
+                    </select>
+
 
                 </div>
                 <div class="form-group text-center">

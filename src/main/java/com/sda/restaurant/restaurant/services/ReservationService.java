@@ -24,6 +24,7 @@ public class ReservationService {
     }
 
     public Long saveReservation(ReservationController.ReservationForm reservationForm) {
+        modelMapper.getConfiguration().setAmbiguityIgnored(true);
         ReservationEntity reservationEntity = modelMapper.map(reservationForm, ReservationEntity.class);
         return reservationRepository.save(reservationEntity).getId();
     }

@@ -1,7 +1,6 @@
 package com.sda.restaurant.restaurant.controllers;
 
 import com.sda.restaurant.restaurant.DTO.ReservationDTO;
-import com.sda.restaurant.restaurant.model.ReservationEntity;
 import com.sda.restaurant.restaurant.services.ClientService;
 import com.sda.restaurant.restaurant.services.ReservationService;
 import com.sda.restaurant.restaurant.services.TableService;
@@ -63,7 +62,7 @@ public class ReservationController {
         private Float tip;
 
         Long clientId;
-        List<Long> tablesIds;
+        Long tablesId;
 
         public ReservationForm(){}
 
@@ -99,12 +98,12 @@ public class ReservationController {
             this.tip = tip;
         }
 
-        public List<Long> getTablesIds() {
-            return tablesIds;
+        public Long getTablesId() {
+            return tablesId;
         }
 
-        public void setTablesIds(List<Long> tablesIds) {
-            this.tablesIds = tablesIds;
+        public void setTablesId(Long tablesId) {
+            this.tablesId = tablesId;
         }
     }
 }

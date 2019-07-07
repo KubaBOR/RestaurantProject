@@ -24,7 +24,7 @@
                 <thead>
                 <tr>
                     <th>Date and Time</th>
-                    <!--<th>is Paid?</th>-->
+                    <th>is Paid?</th>
                     <th>Tip amount</th>
                     <th>Client</th>
                     <th>Tables</th>
@@ -33,11 +33,12 @@
                 <tbody>
                 <tr th:each="reservation: ${allReservations}">
                     <td th:text="${reservation.dateAndTime}"></td>
-                    <td th:text="${reservation.isPaid} ? 'Paid' : 'Not Paid'"></td>
+                    <td th:text="${reservation.Paid} ? 'Paid' : 'Not Paid'"></td>
                     <td th:text="${reservation.tip}"></td>
                     <!-- todo - display clients and tables -->
                     <td th:text="${reservation.client}"></td>
                     <td th:text="${reservation.tables}"></td>
+
                     <td>
                         <!-- todo - deleteAction -->
                     </td>
@@ -81,14 +82,13 @@
                                th:text="${client.surname}"/>
                     </select>
 
-                    <!--<legend>Select Table</legend>
-                    <div th:each="tables: ${allTables}">
-                        <input type="checkbox"
-                               id="chosenTable"
-                               th:field="${newReservation.tables}"
-                               th:value="${tables.size}"
-                               th:text="${tables.size}">
-                    </div> -->
+                    <legend>Select Table</legend>
+                    <select th:field="${reservationForm.tablesId}" name="tables">
+                        <option th:each="tables : ${allTables}"
+                                th:value="${tables.getId()}"
+                                th:text="${tables.size}"/>
+                    </select>
+
 
                 </div>
                 <div class="form-group text-center">

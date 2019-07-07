@@ -14,7 +14,7 @@ public class ReservationDTO {
     private Boolean Paid = false;
     private Float tip;
     private ClientDTO client;
-    private List<TablesDTO> tables;
+    private TablesDTO tables;
 
     public ReservationDTO() {
     }
@@ -59,11 +59,11 @@ public class ReservationDTO {
         this.client = client;
     }
 
-    public List<TablesDTO> getTables() {
+    public TablesDTO getTables() {
         return tables;
     }
 
-    public void setTables(List<TablesDTO> tables) {
+    public void setTables(TablesDTO tables) {
         this.tables = tables;
     }
 

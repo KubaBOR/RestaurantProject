@@ -16,7 +16,7 @@ public class TablesEntity {
     private Long id;
     private int size;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="table_id",referencedColumnName = "id")
     private ReservationEntity reservationEntity;
 

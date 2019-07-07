@@ -13,7 +13,7 @@ public class ReservationEntity {
     @Id
     @GeneratedValue
     private Long id;
-    @DateTimeFormat(pattern = "dd/MM/yyyy'T'hh:mm")
+    @DateTimeFormat(pattern = "dd/MM/yyyy''hh:mm")
     private LocalDateTime dateAndTime;
     private Boolean isPaid;
     private Float tip;
@@ -25,8 +25,8 @@ public class ReservationEntity {
 //    @JoinColumn(name = "client_id", referencedColumnName = "id")
     private ClientEntity client;
 
-    @OneToMany
-    private Set<TablesEntity> tables;
+    @OneToOne
+    private TablesEntity tables;
 
 
     public ReservationEntity() {
@@ -88,11 +88,11 @@ public class ReservationEntity {
         this.client = client;
     }
 
-    public Set<TablesEntity> getTables() {
+    public TablesEntity getTables() {
         return tables;
     }
 
-    public void setTables(Set<TablesEntity> tables) {
+    public void setTables(TablesEntity tables) {
         this.tables = tables;
     }
 }
