@@ -53,16 +53,16 @@
         <div class="col-lg-4">
             <h2>Add Reservation</h2>
 
-            <form action="#" th:action="@{/addReservationAction}" th:object="${newReservation}" th:method="post">
+            <form action="#" th:action="@{/addReservationAction}" th:object="${reservationForm}" th:method="post">
                 <div class="form-group">
 
                     <label for="dateAndTime">Date and Time</label>
                     <input id="dateAndTime" class="form-control"
-                           type="datetime-local" th:field="${newReservation.dateAndTime}"/>
+                           type="datetime-local" th:field="${reservationForm.dateAndTime}"/>
 
                     <label for="Tip">Tip</label>
                     <input id="Tip" class="form-control" placeholder="Tip amount"
-                           type="text" th:field="${newReservation.tip}"/>
+                           type="text" th:field="${reservationForm.tip}"/>
 
                     <!-- todo - input clients and tables -->
                     <!--<label for="clientId">Client</label>
@@ -75,22 +75,20 @@
 
 -->
                     <legend>Select Client</legend>
-                    <div th:each="client: ${allClients}">
-                        <input type="radio"
-                               id="chosenClient"
-                               th:field="${newReservation.client}"
-                               th:value="${client.surname}"
-                               th:text="${client.surname}">
-                    </div>
+                    <select th:field="${reservationForm.clientId}" name="client">
+                            <option th:each="client : ${allClients}"
+                               th:value="${client.getId()}"
+                               th:text="${client.surname}"/>
+                    </select>
 
-                    <legend>Select Table</legend>
+                    <!--<legend>Select Table</legend>
                     <div th:each="tables: ${allTables}">
                         <input type="checkbox"
                                id="chosenTable"
                                th:field="${newReservation.tables}"
                                th:value="${tables.size}"
                                th:text="${tables.size}">
-                    </div>
+                    </div> -->
 
                 </div>
                 <div class="form-group text-center">
