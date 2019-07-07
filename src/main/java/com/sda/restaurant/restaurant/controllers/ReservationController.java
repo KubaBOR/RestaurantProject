@@ -43,7 +43,7 @@ public class ReservationController {
 
 
 
-        //reservationService.saveReservation(reservationDTO);
+        reservationService.saveReservation(reservationForm);
         RedirectView redirectView = new RedirectView();
         redirectView.setUrl("/allReservationsPage");
         return redirectView;

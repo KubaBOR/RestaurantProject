@@ -11,7 +11,7 @@ public class ReservationDTO {
     //@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime dateAndTime;
-    private Boolean isPaid = false;
+    private Boolean Paid = false;
     private Float tip;
     private ClientDTO client;
     private List<TablesDTO> tables;
@@ -36,11 +36,11 @@ public class ReservationDTO {
     }
 
     public Boolean getPaid() {
-        return isPaid;
+        return Paid;
     }
 
     public void setPaid(Boolean paid) {
-        isPaid = paid;
+        Paid = paid;
     }
 
     public Float getTip() {
@@ -72,7 +72,7 @@ public class ReservationDTO {
         return "ReservationDTO{" +
                 "id=" + id +
                 ", dateAndTime=" + dateAndTime +
-                ", isPaid=" + isPaid +
+                ", Paid=" + Paid +
                 ", tip=" + tip +
                 ", client=" + client +
                 ", tables=" + tables +

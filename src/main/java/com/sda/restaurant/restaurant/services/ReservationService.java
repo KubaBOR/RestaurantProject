@@ -1,6 +1,7 @@
 package com.sda.restaurant.restaurant.services;
 
 import com.sda.restaurant.restaurant.DTO.ReservationDTO;
+import com.sda.restaurant.restaurant.controllers.ReservationController;
 import com.sda.restaurant.restaurant.model.ReservationEntity;
 import com.sda.restaurant.restaurant.repositories.ReservationRepository;
 import org.modelmapper.ModelMapper;
@@ -22,9 +23,8 @@ public class ReservationService {
         this.modelMapper = modelMapper;
     }
 
-    public Long saveReservation(ReservationDTO reservationDTO) {
-        ReservationEntity reservationEntity = modelMapper.map(reservationDTO, ReservationEntity.class);
-
+    public Long saveReservation(ReservationController.ReservationForm reservationForm) {
+        ReservationEntity reservationEntity = modelMapper.map(reservationForm, ReservationEntity.class);
         return reservationRepository.save(reservationEntity).getId();
     }
 

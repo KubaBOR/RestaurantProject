@@ -1,6 +1,7 @@
 package com.sda.restaurant.restaurant.model;
 
 
+import com.sda.restaurant.restaurant.controllers.ReservationController;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -20,12 +21,13 @@ public class ReservationEntity {
 // todo - klucz obcy id tables
 
     //todo - fix
-    @OneToMany //(cascade = CascadeType.ALL)
+    @OneToOne //(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "client_id", referencedColumnName = "id")
-    private Set<ClientEntity> client;
+    private ClientEntity client;
 
     @OneToMany
     private Set<TablesEntity> tables;
+
 
     public ReservationEntity() {
     }
@@ -78,11 +80,11 @@ public class ReservationEntity {
         this.tip = tip;
     }
 
-    public Set<ClientEntity> getClient() {
+    public ClientEntity getClient() {
         return client;
     }
 
-    public void setClient(Set<ClientEntity> client) {
+    public void setClient(ClientEntity client) {
         this.client = client;
     }
 
