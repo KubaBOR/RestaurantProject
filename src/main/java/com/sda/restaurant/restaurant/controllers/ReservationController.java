@@ -61,6 +61,14 @@ public class ReservationController {
         return reservation.get();
     }
 
+    @DeleteMapping("/deleteReservationAction/{id}")
+    public RedirectView deleteReservation(@PathVariable Long id) {
+        reservationService.deleteReservationById(id);
+        RedirectView redirectView = new RedirectView();
+        redirectView.setUrl("/allReservationsPage");
+        return redirectView;
+    }
+
     @PutMapping("/reservations/{id}")
     public RedirectView updateReservation(ReservationDTO reservation, @PathVariable Long id) {
         reservation = reservationService.updateStuff(id);
@@ -76,14 +84,6 @@ public class ReservationController {
         model.addAttribute("allTables", tableService.getAllTables());
         model.addAttribute("reservationForm", new ReservationForm());
     }
-    @DeleteMapping("/deleteReservationAction/{deleteReservationId}")
-    public RedirectView deleteReservation(@PathVariable Long deleteReservationId) {
-        reservationService.deleteReservationById(deleteReservationId);
-        RedirectView redirectView = new RedirectView();
-        redirectView.setUrl("/allReservationsPage");
-        return redirectView;
-    }
-
 
     public static class ReservationForm {
         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)

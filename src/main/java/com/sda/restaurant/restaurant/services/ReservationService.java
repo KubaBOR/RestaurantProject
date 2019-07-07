@@ -40,6 +40,10 @@ public class ReservationService {
         return modelMapper.map(foundReservation, ReservationDTO.class);
     }
 
+    public void deleteReservationById(Long id) {
+        reservationRepository.deleteById(id);
+    }
+
     public ReservationDTO getReservationById(Long id) {
         ReservationEntity foundReservation = reservationRepository.getById(id);
         return modelMapper.map(foundReservation, ReservationDTO.class);
@@ -51,8 +55,5 @@ public class ReservationService {
                 .collect(Collectors.toList());
     }
 
-    public void deleteReservationById(Long id){
-        reservationRepository.deleteById(id);
-    }
 
 }
