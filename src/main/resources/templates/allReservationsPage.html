@@ -35,12 +35,19 @@
                     <td th:text="${reservation.dateAndTime}"></td>
                     <td th:text="${reservation.Paid} ? 'Paid' : 'Not Paid'"></td>
                     <td th:text="${reservation.tip}"></td>
-                    <!-- todo - display clients and tables -->
+
                     <td th:text="${reservation.client}"></td>
                     <td th:text="${reservation.tables}"></td>
 
                     <td>
                         <!-- todo - deleteAction -->
+                    </td>
+
+                    <td>
+                        <form action="#" th:action="@{'/reservations/{id}'(id=${reservation.id})}" th:object="${reservationForm}" th:method="post">
+                            <input type="hidden" name="_method" value="put"/>
+                            <input type="submit" class="btn btn-success" value="Set Paid">
+                        </form>
                     </td>
                 </tr>
                 </tbody>
@@ -65,16 +72,6 @@
                     <input id="Tip" class="form-control" placeholder="Tip amount"
                            type="text" th:field="${reservationForm.tip}"/>
 
-                    <!-- todo - input clients and tables -->
-                    <!--<label for="clientId">Client</label>
-                    <input id="clientId" class="form-control" placeholder="Client id"
-                           type="text" th:field="${newReservation.client}"/>
-
-                    <label for="tableId">Tables</label>
-                    <input id="tableId" class="form-control" placeholder="Tables"
-                           type="text" th:field="${newReservation.tables}"/>
-
--->
                     <legend>Select Client</legend>
                     <select th:field="${reservationForm.clientId}" name="client">
                             <option th:each="client : ${allClients}"
