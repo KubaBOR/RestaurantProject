@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 @Service
 public class ReservationService {
 
@@ -29,7 +30,22 @@ public class ReservationService {
         return reservationRepository.save(reservationEntity).getId();
     }
 
-    public List<ReservationDTO> getAllReservations(){
+    public ReservationDTO updateStuff(Long reservationId) {
+        ReservationEntity foundReservation = reservationRepository.getOne(reservationId);
+            //todo - set tip amount
+            //foundReservation.setTip(tip);
+        foundReservation.setPaid(true);
+
+        reservationRepository.save(foundReservation);
+        return modelMapper.map(foundReservation, ReservationDTO.class);
+    }
+
+    public ReservationDTO getReservationById(Long id) {
+        ReservationEntity foundReservation = reservationRepository.getById(id);
+        return modelMapper.map(foundReservation, ReservationDTO.class);
+    }
+
+    public List<ReservationDTO> getAllReservations() {
         return reservationRepository.findAll(Sort.by(Sort.Direction.ASC, "id")).stream()
                 .map(reservationEntity -> modelMapper.map(reservationEntity, ReservationDTO.class))
                 .collect(Collectors.toList());
