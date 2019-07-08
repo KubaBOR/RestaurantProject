@@ -23,9 +23,9 @@
             <table class="table table-sm table-hover">
                 <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Reservation ID</th>
-                    <th>Menu</th>
+                    <th>Order ID</th>
+                    <th>Reservation</th>
+                    <th>Order</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -53,22 +53,24 @@
         <div class="col-lg-4">
             <h2>Add Order</h2>
 
-           <!-- <form action="#" th:action="@{/addOrderAction}" th:object="${orderForm}" th:method="post">
+            <form action="#" th:action="@{/addOrderAction}" th:object="${orderForm}" th:method="post">
                 <div class="form-group">
 
 
-                    <legend>Select Client</legend>
-                    <select th:field="${reservationForm.clientId}" name="client">
-                        <option th:each="client : ${allClients}"
-                                th:value="${client.getId()}"
-                                th:text="${client.name} + ' ' + ${client.surname}"/>
+                    <legend>Select Reservation</legend>
+                    <select th:field="${orderForm.reservationId}" name="reservation">
+                        <option th:each="reservation : ${AllReservations}"
+                                th:value="${reservation.getId()}"
+                                th:text="${reservation.client.name} + ' '
+                                + ${reservation.client.surname} + ' '
+                                + ', table id = ' + ${reservation.tables.id}"/>
                     </select>
 
-                    <legend>Select Table</legend>
-                    <select th:field="${reservationForm.tablesId}" name="tables">
-                        <option th:each="tables : ${allTables}"
-                                th:value="${tables.getId()}"
-                                th:text="${tables.size} + ' seats'"/>
+                    <legend>Select Menu</legend>
+                    <select th:field="${orderForm.menuId}" name="tables">
+                        <option th:each="menu : ${allMenus}"
+                                th:value="${menu.getId()}"
+                                th:text="${menu.name}"/>
                     </select>
 
 
@@ -76,10 +78,9 @@
                 <div class="form-group text-center">
                     <input type="submit" value="Add" class="btn btn-outline-primary"/>
                 </div>
-            </form>-->
+            </form>
         </div>
         <div class="col-lg-4">
-
 
 
         </div>

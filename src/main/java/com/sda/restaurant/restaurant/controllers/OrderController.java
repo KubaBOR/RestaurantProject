@@ -65,6 +65,7 @@ public class OrderController {
         model.addAttribute("AllReservations",allReservations);
         model.addAttribute("allMenus",menuService.getAllMenus());
         model.addAttribute("allOrders",orderService.getAllOrders());
+        model.addAttribute("orderForm", new OrderForm());
     }
 
     public static class OrderForm{
