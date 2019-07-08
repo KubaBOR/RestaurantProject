@@ -3,13 +3,15 @@ package com.sda.restaurant.restaurant.DTO;
 import com.sda.restaurant.restaurant.model.MenuEntity;
 import com.sda.restaurant.restaurant.model.ReservationEntity;
 
+import java.util.List;
+
 public class OrderDTO {
 
     private Long id;
 
     private ReservationEntity reservation;
 
-    private MenuEntity menu;
+    private List<MenuEntity> menu;
 
     public OrderDTO() {
     }
@@ -30,11 +32,11 @@ public class OrderDTO {
         this.reservation = reservation;
     }
 
-    public MenuEntity getMenu() {
+    public List<MenuEntity> getMenu() {
         return menu;
     }
 
-    public void setMenu(MenuEntity menu) {
+    public void setMenu(List<MenuEntity> menu) {
         this.menu = menu;
     }
 

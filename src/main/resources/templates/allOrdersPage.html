@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Reservations</title>
+    <title>Orders</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
@@ -19,49 +19,27 @@
     <div class="row align-items-center text-center">
         <div class="col-lg-12">
             <br>
-            <h2>Reservations</h2>
+            <h2>Orders</h2>
             <table class="table table-sm table-hover">
                 <thead>
                 <tr>
-                    <th>Date and Time</th>
-<!--                    <th>is Paid?</th>-->
-                    <th>Tip amount</th>
-                    <th>Client</th>
-                    <th>Tables</th>
+                    <th>ID</th>
+                    <th>Reservation ID</th>
+                    <th>Menu</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="reservation: ${allReservations}">
-                    <td th:text="${reservation.dateAndTime}"></td>
-<!--                    <td th:text="${reservation.Paid} ? 'Paid' : 'Not Paid'"></td>-->
-                    <td th:text="${reservation.tip}"></td>
-
-                    <td th:text="${reservation.client}"></td>
-                    <td th:text="${reservation.tables}"></td>
+                <tr th:each="order: ${allOrders}">
+                    <td th:text="${order.id}"></td>
+                    <td th:text="${order.reservation}"></td>
+                    <td th:text="${order.menu}"></td>
 
                     <td>
-                        <form action="#" th:action="@{'/deleteReservationAction/{id}'(id=${reservation.id})}"
+                        <form action="#" th:action="@{'/deleteOrderAction/{id}'(id=${order.id})}"
                               th:method="delete">
                             <input type="hidden" name="_method" value="delete"/>
                             <input type="submit" class="btn btn-outline-danger" value="Delete">
                         </form>
-                    </td>
-
-                    <td>
-                        <form action="#" th:unless="${reservation.Paid}"
-                              th:action="@{'/reservations/{id}'(id=${reservation.id})}" th:object="${reservationForm}"
-                              th:method="post">
-                            <input type="hidden" name="_method" value="put"/>
-                            <input type="submit" class="btn btn-warning" value="Confirm Payment">
-                        </form>
-                    </td>
-                    <td>
-                        <!--<form action="#"
-                              th:action="@{/setTipAmount/{id}(id=${reservation.id})&(tipAmount=${reservation.tipAmount}})}" th:object="${reservationForm}"
-                              th:method="post">
-                            <input type="hidden" name="_method" value="put"/>
-                            <input type="submit" class="btn btn-outline-success" value="Add tip amount">
-                        </form>-->
                     </td>
                 </tr>
                 </tbody>
@@ -73,14 +51,10 @@
     <div class="row align-items-center">
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
-            <h2>Add Reservation</h2>
+            <h2>Add Order</h2>
 
-            <form action="#" th:action="@{/addReservationAction}" th:object="${reservationForm}" th:method="post">
+           <!-- <form action="#" th:action="@{/addOrderAction}" th:object="${orderForm}" th:method="post">
                 <div class="form-group">
-
-                    <label for="dateAndTime">Date and Time</label>
-                    <input id="dateAndTime" class="form-control"
-                           type="datetime-local" th:field="${reservationForm.dateAndTime}"/>
 
 
                     <legend>Select Client</legend>
@@ -102,7 +76,7 @@
                 <div class="form-group text-center">
                     <input type="submit" value="Add" class="btn btn-outline-primary"/>
                 </div>
-            </form>
+            </form>-->
         </div>
         <div class="col-lg-4">
 

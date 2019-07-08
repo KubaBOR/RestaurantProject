@@ -1,6 +1,8 @@
 package com.sda.restaurant.restaurant.model;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class OrderEntity {
@@ -8,11 +10,11 @@ public class OrderEntity {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne
+    @OneToOne
     private ReservationEntity reservation;
 
     @OneToMany
-    private MenuEntity menu;
+    private Set<MenuEntity> menu;
 
     public OrderEntity() {
     }
@@ -33,11 +35,11 @@ public class OrderEntity {
         this.reservation = reservation;
     }
 
-    public MenuEntity getMenu() {
+    public Set<MenuEntity> getMenu() {
         return menu;
     }
 
-    public void setMenu(MenuEntity menu) {
+    public void setMenu(Set<MenuEntity> menu) {
         this.menu = menu;
     }
 }
