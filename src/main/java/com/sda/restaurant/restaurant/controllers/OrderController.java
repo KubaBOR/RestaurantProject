@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class OrderController {
@@ -64,6 +65,30 @@ public class OrderController {
         model.addAttribute("AllReservations",allReservations);
         model.addAttribute("allMenus",menuService.getAllMenus());
         model.addAttribute("allOrders",orderService.getAllOrders());
+    }
+
+    public static class OrderForm{
+        public OrderForm() {
+        }
+
+        Long reservationId;
+        List<Long> menuId;
+
+        public Long getReservationId() {
+            return reservationId;
+        }
+
+        public void setReservationId(Long reservationId) {
+            this.reservationId = reservationId;
+        }
+
+        public List<Long> getMenuId() {
+            return menuId;
+        }
+
+        public void setMenuId(List<Long> menuId) {
+            this.menuId = menuId;
+        }
     }
 }
 
