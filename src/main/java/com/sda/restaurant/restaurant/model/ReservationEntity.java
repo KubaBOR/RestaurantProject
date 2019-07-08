@@ -28,6 +28,10 @@ public class ReservationEntity {
     @OneToOne
     private TablesEntity tables;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="reservation_id",referencedColumnName = "id")
+    private OrderEntity order;
+
 
     public ReservationEntity() {
     }

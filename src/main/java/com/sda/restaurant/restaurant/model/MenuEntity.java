@@ -1,9 +1,7 @@
 package com.sda.restaurant.restaurant.model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * This class contains information about the menu items in the restaurant
@@ -18,6 +16,10 @@ public class MenuEntity {
     private String category;
     private String name;
     private Float price;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="menu_id",referencedColumnName = "id")
+    private OrderEntity order;
 
 
     public MenuEntity() {

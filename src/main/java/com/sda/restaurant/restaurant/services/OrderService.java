@@ -1,9 +1,15 @@
 package com.sda.restaurant.restaurant.services;
 
+import com.sda.restaurant.restaurant.DTO.OrderDTO;
+import com.sda.restaurant.restaurant.model.OrderEntity;
 import com.sda.restaurant.restaurant.repositories.OrderRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderService {
@@ -16,4 +22,15 @@ public class OrderService {
         this.orderRepository = orderRepository;
         this.modelMapper = modelMapper;
     }
+
+    public Long addOrder(OrderDTO order){
+        OrderEntity orderEntity = modelMapper.map(order, OrderEntity.class);
+        return orderRepository.save(orderEntity).getId();
+    }
+    public List<OrderDTO> getAllOrders(){
+        return orderRepository.findAll(Sort.by(Sort.Direction.ASC, "id")).stream()
+                .map(order -> modelMapper.map(order, OrderDTO.class))
+                .collect(Collectors.toList());
+    }
+    public void deleteOrderById(Long id) { orderRepository.deleteById(id);}
 }
