@@ -39,6 +39,12 @@ public class ReservationService {
         reservationRepository.save(foundReservation);
         return modelMapper.map(foundReservation, ReservationDTO.class);
     }
+    public ReservationDTO updateTipAmount(Long id, Float tipAmount) {
+        ReservationEntity foundReservation = reservationRepository.getOne(id);
+        foundReservation.setTip(tipAmount);
+        reservationRepository.save(foundReservation);
+        return modelMapper.map(foundReservation, ReservationDTO.class);
+    }
 
     public void deleteReservationById(Long id) {
         reservationRepository.deleteById(id);

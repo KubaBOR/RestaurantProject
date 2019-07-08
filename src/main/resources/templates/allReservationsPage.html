@@ -40,17 +40,28 @@
                     <td th:text="${reservation.tables}"></td>
 
                     <td>
-                        <form action="#" th:action="@{'/deleteReservationAction/{id}'(id=${reservation.id})}" th:method="delete">
+                        <form action="#" th:action="@{'/deleteReservationAction/{id}'(id=${reservation.id})}"
+                              th:method="delete">
                             <input type="hidden" name="_method" value="delete"/>
                             <input type="submit" class="btn btn-outline-danger" value="Delete">
                         </form>
                     </td>
 
                     <td>
-                        <form action="#" th:action="@{'/reservations/{id}'(id=${reservation.id})}" th:object="${reservationForm}" th:method="post">
+                        <form action="#" th:unless="${reservation.Paid}"
+                              th:action="@{'/reservations/{id}'(id=${reservation.id})}" th:object="${reservationForm}"
+                              th:method="post">
                             <input type="hidden" name="_method" value="put"/>
                             <input type="submit" class="btn btn-outline-success" value="Set Paid">
                         </form>
+                    </td>
+                    <td>
+                        <!--<form action="#"
+                              th:action="@{/setTipAmount/{id}(id=${reservation.id})&(tipAmount=${reservation.tipAmount}})}" th:object="${reservationForm}"
+                              th:method="post">
+                            <input type="hidden" name="_method" value="put"/>
+                            <input type="submit" class="btn btn-outline-success" value="Add tip amount">
+                        </form>-->
                     </td>
                 </tr>
                 </tbody>
@@ -71,22 +82,19 @@
                     <input id="dateAndTime" class="form-control"
                            type="datetime-local" th:field="${reservationForm.dateAndTime}"/>
 
-                    <label for="Tip">Tip</label>
-                    <input id="Tip" class="form-control" placeholder="Tip amount"
-                           type="text" th:field="${reservationForm.tip}"/>
 
                     <legend>Select Client</legend>
                     <select th:field="${reservationForm.clientId}" name="client">
-                            <option th:each="client : ${allClients}"
-                               th:value="${client.getId()}"
-                               th:text="${client.surname}"/>
+                        <option th:each="client : ${allClients}"
+                                th:value="${client.getId()}"
+                                th:text="${client.name} + ' ' + ${client.surname}"/>
                     </select>
 
                     <legend>Select Table</legend>
                     <select th:field="${reservationForm.tablesId}" name="tables">
                         <option th:each="tables : ${allTables}"
                                 th:value="${tables.getId()}"
-                                th:text="${tables.size}"/>
+                                th:text="${tables.size} + ' seats'"/>
                     </select>
 
 
@@ -96,7 +104,11 @@
                 </div>
             </form>
         </div>
-        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+
+
+
+        </div>
     </div>
 
 
