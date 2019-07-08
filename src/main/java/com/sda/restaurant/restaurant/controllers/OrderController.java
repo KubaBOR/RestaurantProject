@@ -37,8 +37,8 @@ public class OrderController {
     }
 
     @PostMapping("/addOrderAction")
-    public RedirectView addNewOrder(@ModelAttribute("orderDTO") OrderDTO orderDTO, Model model){
-        orderService.addOrder(orderDTO);
+    public RedirectView addNewOrder(@ModelAttribute("orderForm") OrderForm orderForm, Model model){
+        orderService.addOrder(orderForm);
         RedirectView redirectView = new RedirectView();
         redirectView.setUrl("/allOrdersPage");
         return redirectView;

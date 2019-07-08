@@ -1,6 +1,7 @@
 package com.sda.restaurant.restaurant.services;
 
 import com.sda.restaurant.restaurant.DTO.OrderDTO;
+import com.sda.restaurant.restaurant.controllers.OrderController;
 import com.sda.restaurant.restaurant.model.OrderEntity;
 import com.sda.restaurant.restaurant.repositories.OrderRepository;
 import org.modelmapper.ModelMapper;
@@ -23,8 +24,8 @@ public class OrderService {
         this.modelMapper = modelMapper;
     }
 
-    public Long addOrder(OrderDTO order){
-        OrderEntity orderEntity = modelMapper.map(order, OrderEntity.class);
+    public Long addOrder(OrderController.OrderForm orderForm){
+        OrderEntity orderEntity = modelMapper.map(orderForm, OrderEntity.class);
         return orderRepository.save(orderEntity).getId();
     }
     public List<OrderDTO> getAllOrders(){
