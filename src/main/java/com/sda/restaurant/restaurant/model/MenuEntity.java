@@ -25,6 +25,13 @@ public class MenuEntity {
     public MenuEntity() {
     }
 
+    public MenuEntity(Integer number, String category, String name, Float price) {
+        this.number = number;
+        this.category = category;
+        this.name = name;
+        this.price = price;
+    }
+
     public Long getId() {
         return id;
     }
