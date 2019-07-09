@@ -24,6 +24,7 @@
                 <thead>
                 <tr>
                     <th>Order ID</th>
+                    <th>Table</th>
                     <th>Reservation</th>
                     <th>Order</th>
                 </tr>
@@ -31,7 +32,9 @@
                 <tbody>
                 <tr th:each="order: ${allOrders}">
                     <td th:text="${order.id}"></td>
-                    <td th:text="${order.reservation}"></td>
+                    <td class="btn btn-primary" th:text="${order.reservation.tables.getId()}"></td>
+                    <td th:text="${order.reservation.client.getName()} + ' '
+                    + ${order.reservation.client.getSurname()}"></td>
                     <td th:text="${order.menu}"></td>
 
                     <td>

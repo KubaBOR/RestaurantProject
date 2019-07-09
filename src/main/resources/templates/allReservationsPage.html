@@ -24,20 +24,21 @@
                 <thead>
                 <tr>
                     <th>Date and Time</th>
-<!--                    <th>is Paid?</th>-->
+                    <!--                    <th>is Paid?</th>-->
                     <th>Tip amount</th>
+                    <th>Table</th>
                     <th>Client</th>
-                    <th>Tables</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="reservation: ${allReservations}">
                     <td th:text="${reservation.dateAndTime}"></td>
-<!--                    <td th:text="${reservation.Paid} ? 'Paid' : 'Not Paid'"></td>-->
+                    <!--                    <td th:text="${reservation.Paid} ? 'Paid' : 'Not Paid'"></td>-->
                     <td th:text="${reservation.tip}"></td>
+                    <td class="btn btn-primary" th:text="${reservation.tables.id}"></td>
 
-                    <td th:text="${reservation.client}"></td>
-                    <td th:text="${reservation.tables}"></td>
+                    <td th:text="${reservation.client.name} + ' '
+                    + ${reservation.client.surname}"></td>
 
                     <td>
                         <form action="#" th:action="@{'/deleteReservationAction/{id}'(id=${reservation.id})}"
@@ -105,7 +106,6 @@
             </form>
         </div>
         <div class="col-lg-4">
-
 
 
         </div>
