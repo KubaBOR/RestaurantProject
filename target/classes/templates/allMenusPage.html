@@ -52,18 +52,30 @@
     <div class="row align-items-center">
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
-            <h2> Create new Menu</h2>
+            <h2>Add to Menu</h2>
 
             <form action="#" th:action="@{/addMenuAction}" th:object="${newMenu}" th:method="post">
                 <div class="form-group">
+
+                    <label>Category</label>
+                    <select th:field="${newMenu.category}">
+                            <option th:value="'Drink'" th:text="Drink"></option>
+                            <option th:value="'Dinner'" th:text="Dinner"></option>
+                            <option th:value="'Dessert'" th:text="Dessert"></option>
+                            <option th:value="'Vegetarian'" th:text="Vegetarian"></option>
+                            <option th:value="'Wine'" th:text="Wine"></option>
+                    </select>
+
+                    <br>
 
                     <label for="menusNumber">Number</label>
                     <input id="menusNumber" class="form-control" placeholder="Number"
                            type="text" th:field="${newMenu.number}"/>
 
-                    <label for="menusCategory">Category</label>
+                    <!--<label for="menusCategory">Category</label>
                     <input id="menusCategory" class="form-control" placeholder="Category"
-                           type="text" th:field="${newMenu.category}"/>
+                           type="text" th:field="${newMenu.category}"/>-->
+
 
                     <label for="menusName">Name</label>
                     <input id="menusName" class="form-control" placeholder="Name"

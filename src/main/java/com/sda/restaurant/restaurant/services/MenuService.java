@@ -66,7 +66,7 @@ public class MenuService {
             menuRepository.save(new MenuEntity(15, "Dinner", "Oscietra Caviar 30g", 455.00F));
             menuRepository.save(new MenuEntity(16, "Dinner", "Crispy Duck & Mango salad", 76.00F));
             menuRepository.save(new MenuEntity(17, "Dinner", "The Ristorante Burger", 98.00F));
-            menuRepository.save(new MenuEntity(18, "Dinner", "The Ristorante Burger", 98.00F));
+            menuRepository.save(new MenuEntity(18, "Dinner", "Palermo Special Burger", 98.00F));
             menuRepository.save(new MenuEntity(19, "Dinner", "The Ristorante Pizza 40cm", 82.00F));
             menuRepository.save(new MenuEntity(20, "Dessert", "Chocolate Pyramid", 35.50F));
             menuRepository.save(new MenuEntity(21, "Dessert", "Ristorante Cheesecake", 42.00F));
