@@ -11,7 +11,7 @@ public class OrderDTO {
 
     private ReservationEntity reservation;
 
-    private List<MenuEntity> menu;
+    private MenuEntity menu;
 
     public OrderDTO() {
     }
@@ -32,11 +32,11 @@ public class OrderDTO {
         this.reservation = reservation;
     }
 
-    public List<MenuEntity> getMenu() {
+    public MenuEntity getMenu() {
         return menu;
     }
 
-    public void setMenu(List<MenuEntity> menu) {
+    public void setMenu(MenuEntity menu) {
         this.menu = menu;
     }
 

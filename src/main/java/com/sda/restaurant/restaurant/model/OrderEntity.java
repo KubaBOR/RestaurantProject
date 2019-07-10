@@ -13,8 +13,8 @@ public class OrderEntity {
     @OneToOne
     private ReservationEntity reservation;
 
-    @OneToMany
-    private Set<MenuEntity> menu;
+    @OneToOne
+    private MenuEntity menu;
 
     public OrderEntity() {
     }
@@ -35,11 +35,11 @@ public class OrderEntity {
         this.reservation = reservation;
     }
 
-    public Set<MenuEntity> getMenu() {
+    public MenuEntity getMenu() {
         return menu;
     }
 
-    public void setMenu(Set<MenuEntity> menu) {
+    public void setMenu(MenuEntity menu) {
         this.menu = menu;
     }
 }

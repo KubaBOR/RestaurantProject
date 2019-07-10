@@ -25,6 +25,7 @@ public class OrderService {
     }
 
     public Long addOrder(OrderController.OrderForm orderForm){
+        modelMapper.getConfiguration().setAmbiguityIgnored(true);
         OrderEntity orderEntity = modelMapper.map(orderForm, OrderEntity.class);
         return orderRepository.save(orderEntity).getId();
     }

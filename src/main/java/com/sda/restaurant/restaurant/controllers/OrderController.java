@@ -73,7 +73,7 @@ public class OrderController {
         }
 
         Long reservationId;
-        List<Long> menuId;
+        Long menuId;
 
         public Long getReservationId() {
             return reservationId;
@@ -83,11 +83,11 @@ public class OrderController {
             this.reservationId = reservationId;
         }
 
-        public List<Long> getMenuId() {
+        public Long getMenuId() {
             return menuId;
         }
 
-        public void setMenuId(List<Long> menuId) {
+        public void setMenuId(Long menuId) {
             this.menuId = menuId;
         }
     }
