@@ -23,6 +23,9 @@ public class TablesEntity {
     public TablesEntity() {
     }
 
+    public TablesEntity(int size) {
+        this.size = size;
+    }
 
     public Long getId() {
         return id;

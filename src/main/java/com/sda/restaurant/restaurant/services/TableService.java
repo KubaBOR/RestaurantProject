@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,5 +38,17 @@ public class TableService {
     }
     public void deleteTableById(Long id){
         tableRepository.deleteById(id);
+    }
+
+    @PostConstruct
+    public void createTablesForPresentation(){
+        if (tableRepository.count() < 5) {
+            tableRepository.deleteAll();
+            tableRepository.save(new TablesEntity(2));
+            tableRepository.save(new TablesEntity(4));
+            tableRepository.save(new TablesEntity(6));
+            tableRepository.save(new TablesEntity(8));
+            tableRepository.save(new TablesEntity(10));
+        }
     }
 }
