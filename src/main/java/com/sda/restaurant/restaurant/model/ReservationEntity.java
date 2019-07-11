@@ -1,12 +1,9 @@
 package com.sda.restaurant.restaurant.model;
 
-
-import com.sda.restaurant.restaurant.controllers.ReservationController;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Set;
+
 
 @Entity
 public class ReservationEntity {
@@ -82,6 +79,14 @@ public class ReservationEntity {
 
     public void setTip(Float tip) {
         this.tip = tip;
+    }
+
+    public OrderEntity getOrder() {
+        return order;
+    }
+
+    public void setOrder(OrderEntity order) {
+        this.order = order;
     }
 
     public ClientEntity getClient() {

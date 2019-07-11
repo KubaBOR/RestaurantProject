@@ -1,9 +1,7 @@
 package com.sda.restaurant.restaurant.DTO;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class ReservationDTO {
 

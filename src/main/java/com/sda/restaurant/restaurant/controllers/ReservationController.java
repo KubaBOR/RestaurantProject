@@ -76,9 +76,9 @@ public class ReservationController {
         redirectView.setUrl("/allReservationsPage");
         return redirectView;
     }
-    @PutMapping("/setTipAmount/{id}&{tipAmount}")
-    public RedirectView updateTimAmount (ReservationDTO reservation, @PathVariable Long id, @PathVariable Float tipAmount) {
-        reservationService.updateTipAmount(id, tipAmount);
+    @PostMapping("/setTipAmount/{id}")
+    public RedirectView updateTimAmount (ReservationDTO reservation, @PathVariable Long id, @RequestParam Float tip) {
+        reservationService.updateTipAmount(id, tip);
         RedirectView redirectView = new RedirectView();
         redirectView.setUrl("/allReservationsPage");
         return redirectView;

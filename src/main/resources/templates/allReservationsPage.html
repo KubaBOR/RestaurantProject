@@ -57,12 +57,13 @@
                         </form>
                     </td>
                     <td>
-                        <!--<form action="#"
-                              th:action="@{/setTipAmount/{id}(id=${reservation.id})&(tipAmount=${reservation.tipAmount}})}" th:object="${reservationForm}"
+                        <!--th:unless="${reservation.Paid}"-->
+                        <form action="#"
+                              th:action="@{'/setTipAmount/{id}' (id=${reservation.id})}" th:object="${reservationForm}"
                               th:method="post">
-                            <input type="hidden" name="_method" value="put"/>
-                            <input type="submit" class="btn btn-outline-success" value="Add tip amount">
-                        </form>-->
+                            <input id="tip" class="form-control" type="text" th:field="${reservationForm.tip}" th:value="${reservationForm.tip}"/>
+                            <input type="submit" value="Give tip" class="btn btn-outline-success">
+                        </form>
                     </td>
                 </tr>
                 </tbody>
