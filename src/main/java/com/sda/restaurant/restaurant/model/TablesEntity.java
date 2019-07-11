@@ -15,6 +15,7 @@ public class TablesEntity {
     @GeneratedValue
     private Long id;
     private int size;
+    private Boolean occupied;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="table_id",referencedColumnName = "id")
@@ -45,6 +46,14 @@ public class TablesEntity {
 
     public ReservationEntity getReservationEntity() {
         return reservationEntity;
+    }
+
+    public Boolean getOccupied() {
+        return occupied;
+    }
+
+    public void setOccupied(Boolean occupied) {
+        this.occupied = occupied;
     }
 
     public void setReservationEntity(ReservationEntity reservationEntity) {

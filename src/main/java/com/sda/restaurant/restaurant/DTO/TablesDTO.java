@@ -4,6 +4,7 @@ public class TablesDTO {
 
     private Long id;
     private int size;
+    private Boolean occupied;
 
     public TablesDTO() {
     }
@@ -22,6 +23,14 @@ public class TablesDTO {
 
     public void setSize(int size) {
         this.size = size;
+    }
+
+    public Boolean getOccupied() {
+        return occupied;
+    }
+
+    public void setOccupied(Boolean occupied) {
+        this.occupied = occupied;
     }
 
     @Override

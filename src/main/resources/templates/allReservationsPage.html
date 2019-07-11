@@ -94,7 +94,7 @@
 
                     <legend>Select Table</legend>
                     <select th:field="${reservationForm.tablesId}" name="tables">
-                        <option th:each="tables : ${allTables}"
+                        <option th:each="tables : ${allUnoccupiedTables}"
                                 th:value="${tables.getId()}"
                                 th:text="${tables.size} + ' seats'"/>
                     </select>

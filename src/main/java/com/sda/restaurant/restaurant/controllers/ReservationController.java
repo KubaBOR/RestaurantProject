@@ -92,7 +92,7 @@ public class ReservationController {
         model.addAttribute("reservationForm", new ReservationForm());
     }
 
-    public static class ReservationForm {
+    public class ReservationForm {
         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
         private LocalDateTime dateAndTime;
         private Boolean isPaid = false;

@@ -36,6 +36,19 @@ public class TableService {
                 .map(tables -> modelMapper.map(tables, TablesDTO.class))
                 .collect(Collectors.toList());
     }
+    public TablesDTO updateTableToOccupied(Long tableId){
+        TablesEntity foundTable = tableRepository.getOne(tableId);
+        foundTable.setOccupied(true);
+        tableRepository.save(foundTable);
+        return modelMapper.map(foundTable,TablesDTO.class);
+    }
+
+    public List<TablesDTO> getAllUnoccupiedTables(){
+        return tableRepository.findAll(Sort.by(Sort.Direction.ASC,"size")).stream()
+                .filter(tablesEntity -> !tablesEntity.getOccupied())
+                .map(tables -> modelMapper.map(tables, TablesDTO.class))
+                .collect(Collectors.toList());
+    }
     public void deleteTableById(Long id){
         tableRepository.deleteById(id);
     }

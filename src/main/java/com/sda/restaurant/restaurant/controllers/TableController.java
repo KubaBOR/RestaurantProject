@@ -26,6 +26,13 @@ public class TableController {
         setupModel(model);
         return "tablesPage";
     }
+    @PostMapping("/updateTableToOccupied/{id}")
+    public RedirectView updateTableToOccupied(@PathVariable Long id){
+        tableService.updateTableToOccupied(id);
+        RedirectView redirectView = new RedirectView();
+        redirectView.setUrl("allReservationsPage");
+        return redirectView;
+    }
 
     @PostMapping("/addNewTableAction")
     public RedirectView addNewTable(@ModelAttribute("newTable") TablesDTO tables) {
@@ -45,7 +52,9 @@ public class TableController {
 
     private void setupModel(Model model){
         List<TablesDTO> allTables = tableService.getAllTables();
+        List<TablesDTO> allUnoccupiedTables = tableService.getAllUnoccupiedTables();
         model.addAttribute("allTables", allTables);
+        model.addAttribute("allUnoccupiedTables", allUnoccupiedTables);
         model.addAttribute("newTable", new TablesDTO());
         model.addAttribute("deleteTableId", "");
     }
