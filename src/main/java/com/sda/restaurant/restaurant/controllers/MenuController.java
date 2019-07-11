@@ -24,6 +24,12 @@ public class MenuController {
         return "allMenusPage";
     }
 
+    @GetMapping("/ristoranteMenu")
+    public String displayMenusUnsecured(Model model){
+        setupModel(model);
+        return "ristoranteMenu";
+    }
+
     @PostMapping("/addMenuAction")
     public RedirectView addNewMenu(@ModelAttribute("newMenu") MenuDTO menu){
         menuService.saveMenu(menu);

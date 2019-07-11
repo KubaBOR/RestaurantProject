@@ -12,7 +12,7 @@
 </head>
 <body class="bgmain">
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <div th:insert="fragments :: mainNavbar"></div>
+    <div th:insert="fragments :: linkToManagement"></div>
 </nav>
 <br>
 <div class="container bg-ristorante">
@@ -34,8 +34,21 @@
                 <tr th:each="reservation: ${allReservations}">
                     <td th:text="${reservation.dateAndTime}"></td>
                     <!--                    <td th:text="${reservation.Paid} ? 'Paid' : 'Not Paid'"></td>-->
-                    <td th:text="${reservation.tip}"></td>
-                    <td class="btn btn-primary" th:text="${reservation.tables.id}"></td>
+                    <td width="150px" th:if="!${reservation.tip}">
+                            <form action="#"
+                                  th:action="@{'/setTipAmount/{id}' (id=${reservation.id})}" th:object="${reservationForm}"
+                                  th:method="post">
+                        <div class="input-group mb-3">
+                                <input id="tip" class="form-control" type="text" placeholder="0.00" th:field="${reservationForm.tip}" th:value="${reservationForm.tip}"/>
+                            <div class="input-group-append">
+                                <input type="submit" value="Give tip" class="btn btn-outline-success">
+                            </div>
+                        </div>
+                            </form>
+
+                    </td>
+                    <td th:if="${reservation.tip}" th:text="${reservation.tip}"></td>
+                    <td class="btn btn-success" th:text="${reservation.tables.id}"></td>
 
                     <td th:text="${reservation.client.name} + ' '
                     + ${reservation.client.surname}"></td>
@@ -56,15 +69,7 @@
                             <input type="submit" class="btn btn-warning" value="Confirm Payment">
                         </form>
                     </td>
-                    <td>
-                        <!--th:unless="${reservation.Paid}"-->
-                        <form action="#"
-                              th:action="@{'/setTipAmount/{id}' (id=${reservation.id})}" th:object="${reservationForm}"
-                              th:method="post">
-                            <input id="tip" class="form-control" type="text" th:field="${reservationForm.tip}" th:value="${reservationForm.tip}"/>
-                            <input type="submit" value="Give tip" class="btn btn-outline-success">
-                        </form>
-                    </td>
+
                 </tr>
                 </tbody>
             </table>
@@ -84,6 +89,8 @@
                     <input id="dateAndTime" class="form-control"
                            type="datetime-local" th:field="${reservationForm.dateAndTime}"/>
 
+                    <!--<input type="hidden" th:field="${reservationForm.occupied}"/>-->
+
 
                     <legend>Select Client</legend>
                     <select th:field="${reservationForm.clientId}" name="client">
@@ -94,7 +101,8 @@
 
                     <legend>Select Table</legend>
                     <select th:field="${reservationForm.tablesId}" name="tables">
-                        <option th:each="tables : ${allUnoccupiedTables}"
+                        <option th:if="!${tables.occupied}"
+                                th:each="tables : ${allTables}"
                                 th:value="${tables.getId()}"
                                 th:text="${tables.size} + ' seats'"/>
                     </select>

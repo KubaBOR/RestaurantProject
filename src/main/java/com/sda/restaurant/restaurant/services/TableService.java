@@ -27,7 +27,7 @@ public class TableService {
 
     public Long saveTable(TablesDTO tables) {
         TablesEntity tablesToSave = modelMapper.map(tables, TablesEntity.class);
-
+        tablesToSave.setOccupied(false);
         return tableRepository.save(tablesToSave).getId();
     }
 
@@ -42,18 +42,24 @@ public class TableService {
         tableRepository.save(foundTable);
         return modelMapper.map(foundTable,TablesDTO.class);
     }
+    public TablesDTO updateTableToNotOccupied(Long tableId){
+        TablesEntity foundTable = tableRepository.getOne(tableId);
+        foundTable.setOccupied(false);
+        tableRepository.save(foundTable);
+        return modelMapper.map(foundTable,TablesDTO.class);
+    }
 
-    public List<TablesDTO> getAllUnoccupiedTables(){
+    /*public List<TablesDTO> getAllUnoccupiedTables(){
         return tableRepository.findAll(Sort.by(Sort.Direction.ASC,"size")).stream()
                 .filter(tablesEntity -> !tablesEntity.getOccupied())
                 .map(tables -> modelMapper.map(tables, TablesDTO.class))
                 .collect(Collectors.toList());
-    }
+    }*/
     public void deleteTableById(Long id){
         tableRepository.deleteById(id);
     }
 
-    @PostConstruct
+    /*@PostConstruct
     public void createTablesForPresentation(){
         if (tableRepository.count() < 5) {
             tableRepository.deleteAll();
@@ -63,5 +69,5 @@ public class TableService {
             tableRepository.save(new TablesEntity(8));
             tableRepository.save(new TablesEntity(10));
         }
-    }
+    }*/
 }

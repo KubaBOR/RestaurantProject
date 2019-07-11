@@ -13,6 +13,7 @@ public class ReservationDTO {
     private Float tip;
     private ClientDTO client;
     private TablesDTO tables;
+    private Boolean occupied = true;
 
     public ReservationDTO() {
     }
@@ -63,6 +64,14 @@ public class ReservationDTO {
 
     public void setTables(TablesDTO tables) {
         this.tables = tables;
+    }
+
+    public Boolean getOccupied() {
+        return occupied;
+    }
+
+    public void setOccupied(Boolean occupied) {
+        this.occupied = occupied;
     }
 
     @Override

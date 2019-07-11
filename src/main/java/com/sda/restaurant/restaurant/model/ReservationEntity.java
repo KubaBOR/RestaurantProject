@@ -14,6 +14,7 @@ public class ReservationEntity {
     private LocalDateTime dateAndTime;
     private Boolean isPaid;
     private Float tip;
+    private Boolean occupied;
 // todo - klucz obcy id klienta
 // todo - klucz obcy id tables
 
@@ -103,5 +104,13 @@ public class ReservationEntity {
 
     public void setTables(TablesEntity tables) {
         this.tables = tables;
+    }
+
+    public Boolean getOccupied() {
+        return occupied;
+    }
+
+    public void setOccupied(Boolean occupied) {
+        this.occupied = occupied;
     }
 }
