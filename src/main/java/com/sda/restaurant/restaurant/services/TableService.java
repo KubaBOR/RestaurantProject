@@ -59,15 +59,22 @@ public class TableService {
         tableRepository.deleteById(id);
     }
 
-    /*@PostConstruct
+    @PostConstruct
     public void createTablesForPresentation(){
-        if (tableRepository.count() < 5) {
+        if (tableRepository.count() < 9) {
             tableRepository.deleteAll();
             tableRepository.save(new TablesEntity(2));
+            tableRepository.save(new TablesEntity(2));
+            tableRepository.save(new TablesEntity(2));
+            tableRepository.save(new TablesEntity(4));
             tableRepository.save(new TablesEntity(4));
             tableRepository.save(new TablesEntity(6));
+            tableRepository.save(new TablesEntity(6));
+            tableRepository.save(new TablesEntity(6));
+            tableRepository.save(new TablesEntity(8));
             tableRepository.save(new TablesEntity(8));
             tableRepository.save(new TablesEntity(10));
+            tableRepository.save(new TablesEntity(10));
         }
-    }*/
+    }
 }

@@ -25,7 +25,9 @@ public class TablesEntity {
     }
 
     public TablesEntity(int size) {
+
         this.size = size;
+        this.occupied = Boolean.FALSE;
     }
 
     public Long getId() {
