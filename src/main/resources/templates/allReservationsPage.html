@@ -48,7 +48,7 @@
 
                     </td>
                     <td th:if="${reservation.tip}" th:text="${reservation.tip}"></td>
-                    <td class="btn btn-success" th:text="${reservation.tables.id}"></td>
+                    <td> <button class="btn btn-outline-dark" th:text="${reservation.tables.id}"/></td>
 
                     <td th:text="${reservation.client.name} + ' '
                     + ${reservation.client.surname}"></td>
@@ -66,7 +66,7 @@
                               th:action="@{'/reservations/{id}'(id=${reservation.id})}" th:object="${reservationForm}"
                               th:method="post">
                             <input type="hidden" name="_method" value="put"/>
-                            <input type="submit" class="btn btn-warning" value="Confirm Payment">
+                            <input type="submit" class="btn btn-outline-success" value="Confirm Payment">
                         </form>
                     </td>
 

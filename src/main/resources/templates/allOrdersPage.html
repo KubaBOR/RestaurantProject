@@ -32,7 +32,7 @@
                 <tbody>
                 <tr th:each="order: ${allOrders}">
                     <td th:text="${order.id}"></td>
-                    <td class="btn btn-primary" th:text="${order.reservation.tables.getId()}"></td>
+                    <td> <button class="btn btn-outline-dark"  th:text="${order.reservation.tables.getId()}"/></td>
                     <td th:text="${order.reservation.client.getName()} + ' '
                     + ${order.reservation.client.getSurname()}"></td>
                     <td th:text="${order.menu.name}"></td>
