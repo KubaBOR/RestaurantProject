@@ -1,4 +1,5 @@
 # RestaurantProject
+### Created by [Bartłomiej Basara](https://github.com/Barrbas) & [Jakub Terentowicz](https://github.com/KubaBOR)
 
 This is a Spring Web app to manage restaurant.
 
