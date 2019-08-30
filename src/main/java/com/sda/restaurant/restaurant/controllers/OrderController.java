@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
-import java.util.Set;
 
 @Controller
 public class OrderController {
@@ -31,13 +30,13 @@ public class OrderController {
     }
 
     @GetMapping("/allOrdersPage")
-    public String displayAllOrders(Model model){
+    public String displayAllOrders(Model model) {
         setupModel(model);
         return "allOrdersPage";
     }
 
     @PostMapping("/addOrderAction")
-    public RedirectView addNewOrder(@ModelAttribute("orderForm") OrderForm orderForm, Model model){
+    public RedirectView addNewOrder(@ModelAttribute("orderForm") OrderForm orderForm, Model model) {
         orderService.addOrder(orderForm);
         RedirectView redirectView = new RedirectView();
         redirectView.setUrl("/allOrdersPage");
@@ -45,7 +44,7 @@ public class OrderController {
     }
 
     @DeleteMapping("/deleteOrderAction/{id}")
-    public RedirectView deleteOrder(@PathVariable Long id){
+    public RedirectView deleteOrder(@PathVariable Long id) {
         orderService.deleteOrderById(id);
         RedirectView redirectView = new RedirectView();
         redirectView.setUrl("/allOrdersPage");
@@ -60,20 +59,29 @@ public class OrderController {
 //        return redirectView;
 //    }
 
-    private void setupModel(Model model){
+    private void setupModel(Model model) {
         List<ReservationDTO> allReservations = reservationService.getAllReservations();
-        model.addAttribute("AllReservations",allReservations);
-        model.addAttribute("allMenus",menuService.getAllMenus());
-        model.addAttribute("allOrders",orderService.getAllOrders());
+        model.addAttribute("AllReservations", allReservations);
+        model.addAttribute("allMenus", menuService.getAllMenus());
+        model.addAttribute("allOrders", orderService.getAllOrders());
         model.addAttribute("orderForm", new OrderForm());
     }
 
-    public static class OrderForm{
-        public OrderForm() {
+    public static class OrderForm {
+        public OrderForm() {}
+
+        public OrderForm(Long[] menuIds) {
+            this.menuIds = menuIds;
         }
 
         Long reservationId;
-        Long menuId;
+        private Long[] menuIds;
+
+
+        /*Long menuId1;
+        Long menuId2;
+        Long menuId3;
+*/
 
         public Long getReservationId() {
             return reservationId;
@@ -83,12 +91,12 @@ public class OrderController {
             this.reservationId = reservationId;
         }
 
-        public Long getMenuId() {
-            return menuId;
+        public Long[] getMenuIds() {
+            return menuIds;
         }
 
-        public void setMenuId(Long menuId) {
-            this.menuId = menuId;
+        public void setMenuIds(Long[] menuIds) {
+            this.menuIds = menuIds;
         }
     }
 }

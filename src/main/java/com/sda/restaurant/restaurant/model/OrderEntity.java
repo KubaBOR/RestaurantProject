@@ -13,10 +13,15 @@ public class OrderEntity {
     @OneToOne
     private ReservationEntity reservation;
 
-    @OneToOne
-    private MenuEntity menu;
+    @OneToMany
+    private Set<MenuEntity> menu;
 
     public OrderEntity() {
+    }
+
+    public OrderEntity(ReservationEntity reservation, Set<MenuEntity> menu) {
+        this.reservation = reservation;
+        this.menu = menu;
     }
 
     public Long getId() {
@@ -35,11 +40,11 @@ public class OrderEntity {
         this.reservation = reservation;
     }
 
-    public MenuEntity getMenu() {
+    public Set<MenuEntity> getMenu() {
         return menu;
     }
 
-    public void setMenu(MenuEntity menu) {
+    public void setMenu(Set<MenuEntity> menu) {
         this.menu = menu;
     }
 }

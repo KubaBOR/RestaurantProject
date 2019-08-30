@@ -1,9 +1,8 @@
 package com.sda.restaurant.restaurant.DTO;
 
-import com.sda.restaurant.restaurant.model.MenuEntity;
 import com.sda.restaurant.restaurant.model.ReservationEntity;
 
-import java.util.List;
+import java.util.Set;
 
 public class OrderDTO {
 
@@ -11,7 +10,7 @@ public class OrderDTO {
 
     private ReservationEntity reservation;
 
-    private MenuEntity menu;
+    private Set<MenuDTO> menu;
 
     public OrderDTO() {
     }
@@ -32,11 +31,11 @@ public class OrderDTO {
         this.reservation = reservation;
     }
 
-    public MenuEntity getMenu() {
+    public Set<MenuDTO> getMenu() {
         return menu;
     }
 
-    public void setMenu(MenuEntity menu) {
+    public void setMenu(Set<MenuDTO> menu) {
         this.menu = menu;
     }
 

@@ -35,7 +35,12 @@
                     <td> <button class="btn btn-outline-dark"  th:text="${order.reservation.tables.getId()}"/></td>
                     <td th:text="${order.reservation.client.getName()} + ' '
                     + ${order.reservation.client.getSurname()}"></td>
-                    <td th:text="${order.menu.name}"></td>
+<!--                    <td th:text="${order.menu.name}"></td>-->
+                    <td>
+                        <div th:each="menuItem: ${order.menu}">
+                            <span th:text="${menuItem.name + ' ' + menuItem.price + ' PLN'}"></span>
+                        </div>
+                    </td>
 
                     <td>
                         <form action="#" th:action="@{'/deleteOrderAction/{id}'(id=${order.id})}"
@@ -70,11 +75,18 @@
                     </select>
 
                     <legend>Select Menu</legend>
-                    <select th:field="${orderForm.menuId}" name="menu">
+                    <div th:each="menu : ${allMenus}">
+                        <input type="checkbox"
+                               id="chosenMenuItem"
+                               th:field="${orderForm.menuIds}"
+                               th:value="${menu.id}"
+                               th:text="${menu.name}">
+                    </div>
+                    <!--<select th:field="${orderForm.menuItems.add(menuId1)}" name="menu">
                         <option th:each="menu : ${allMenus}"
                                 th:value="${menu.getId()}"
                                 th:text="${menu.name}"/>
-                    </select>
+                    </select>-->
 
 
                 </div>

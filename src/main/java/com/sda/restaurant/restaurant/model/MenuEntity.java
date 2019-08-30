@@ -17,7 +17,7 @@ public class MenuEntity {
     private String name;
     private Float price;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="menu_id",referencedColumnName = "id")
     private OrderEntity order;
 
