@@ -1,7 +1,7 @@
 package com.sda.restaurant.restaurant.services;
 
 import com.sda.restaurant.restaurant.DTO.OrderDTO;
-import com.sda.restaurant.restaurant.controllers.OrderController;
+import com.sda.restaurant.restaurant.form.OrderForm;
 import com.sda.restaurant.restaurant.model.MenuEntity;
 import com.sda.restaurant.restaurant.model.OrderEntity;
 import com.sda.restaurant.restaurant.model.ReservationEntity;
@@ -34,7 +34,7 @@ public class OrderService {
         this.reservationRepository = reservationRepository;
     }
 
-    public Long addOrder(OrderController.OrderForm orderForm){
+    public Long addOrder(OrderForm orderForm){
 
         ReservationEntity reservationEntity = reservationRepository.getById(orderForm.getReservationId());
         List<Long> menuIds = Arrays.asList(orderForm.getMenuIds());

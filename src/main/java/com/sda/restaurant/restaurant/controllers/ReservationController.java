@@ -1,6 +1,7 @@
 package com.sda.restaurant.restaurant.controllers;
 
 import com.sda.restaurant.restaurant.DTO.ReservationDTO;
+import com.sda.restaurant.restaurant.form.ReservationForm;
 import com.sda.restaurant.restaurant.model.ReservationEntity;
 import com.sda.restaurant.restaurant.repositories.ReservationRepository;
 import com.sda.restaurant.restaurant.services.ClientService;
@@ -8,13 +9,11 @@ import com.sda.restaurant.restaurant.services.ReservationService;
 import com.sda.restaurant.restaurant.services.TableService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,7 +45,7 @@ public class ReservationController {
     @PostMapping("/addReservationAction")
     public RedirectView addNewReservation(@ModelAttribute("reservationForm") ReservationForm reservationForm, Model model) {
         reservationService.saveReservation(reservationForm);
-        tableService.updateTableToOccupied(reservationForm.tablesId);
+        tableService.updateTableToOccupied(reservationForm.getTablesId());
         RedirectView redirectView = new RedirectView();
         redirectView.setUrl("/allReservationsPage");
         return redirectView;
@@ -71,8 +70,8 @@ public class ReservationController {
     }
 
     @PutMapping("/reservations/{id}")
-    public RedirectView updateReservation(ReservationDTO reservation, @PathVariable Long id) {
-        reservation = reservationService.updateStuff(id);
+    public RedirectView updateReservation(@PathVariable Long id) {
+        ReservationDTO reservation = reservationService.updateStuff(id);
         RedirectView redirectView = new RedirectView();
         redirectView.setUrl("/allReservationsPage");
         return redirectView;
@@ -91,68 +90,5 @@ public class ReservationController {
         model.addAttribute("allClients", clientService.getAllClients());
         model.addAttribute("allTables", tableService.getAllTables());
         model.addAttribute("reservationForm", new ReservationForm());
-    }
-
-    public class ReservationForm {
-        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-        private LocalDateTime dateAndTime;
-        private Boolean isPaid = false;
-        private Float tip;
-        private Boolean occupied;
-
-        Long clientId;
-        Long tablesId;
-
-        public ReservationForm() {
-
-        }
-
-        public Long getClientId() {
-            return clientId;
-        }
-
-        public void setClientId(Long clientId) {
-            this.clientId = clientId;
-        }
-
-        public LocalDateTime getDateAndTime() {
-            return dateAndTime;
-        }
-
-        public void setDateAndTime(LocalDateTime dateAndTime) {
-            this.dateAndTime = dateAndTime;
-        }
-
-        public Boolean getPaid() {
-            return isPaid;
-        }
-
-        public void setPaid(Boolean paid) {
-            isPaid = paid;
-        }
-
-        public Float getTip() {
-            return tip;
-        }
-
-        public void setTip(Float tip) {
-            this.tip = tip;
-        }
-
-        public Long getTablesId() {
-            return tablesId;
-        }
-
-        public void setTablesId(Long tablesId) {
-            this.tablesId = tablesId;
-        }
-
-        public Boolean getOccupied() {
-            return occupied;
-        }
-
-        public void setOccupied(Boolean occupied) {
-            this.occupied = occupied;
-        }
     }
 }

@@ -2,6 +2,7 @@ package com.sda.restaurant.restaurant.controllers;
 
 import com.sda.restaurant.restaurant.DTO.OrderDTO;
 import com.sda.restaurant.restaurant.DTO.ReservationDTO;
+import com.sda.restaurant.restaurant.form.OrderForm;
 import com.sda.restaurant.restaurant.repositories.OrderRepository;
 import com.sda.restaurant.restaurant.services.MenuService;
 import com.sda.restaurant.restaurant.services.OrderService;
@@ -65,39 +66,6 @@ public class OrderController {
         model.addAttribute("allMenus", menuService.getAllMenus());
         model.addAttribute("allOrders", orderService.getAllOrders());
         model.addAttribute("orderForm", new OrderForm());
-    }
-
-    public static class OrderForm {
-        public OrderForm() {}
-
-        public OrderForm(Long[] menuIds) {
-            this.menuIds = menuIds;
-        }
-
-        Long reservationId;
-        private Long[] menuIds;
-
-
-        /*Long menuId1;
-        Long menuId2;
-        Long menuId3;
-*/
-
-        public Long getReservationId() {
-            return reservationId;
-        }
-
-        public void setReservationId(Long reservationId) {
-            this.reservationId = reservationId;
-        }
-
-        public Long[] getMenuIds() {
-            return menuIds;
-        }
-
-        public void setMenuIds(Long[] menuIds) {
-            this.menuIds = menuIds;
-        }
     }
 }
 
