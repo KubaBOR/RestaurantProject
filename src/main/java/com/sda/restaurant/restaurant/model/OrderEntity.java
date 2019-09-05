@@ -1,19 +1,27 @@
 package com.sda.restaurant.restaurant.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 public class OrderEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @OneToOne
     private ReservationEntity reservation;
 
-    @OneToMany
-    private Set<MenuEntity> menu;
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(name = "order_menu",
+            joinColumns = { @JoinColumn(name = "order_id") },
+            inverseJoinColumns = { @JoinColumn(name = "menu_id") })
+    private Set<MenuEntity> menu = new HashSet<>();
 
     private Double totalPrice;
 

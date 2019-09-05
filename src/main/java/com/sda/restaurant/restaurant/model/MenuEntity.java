@@ -2,6 +2,8 @@ package com.sda.restaurant.restaurant.model;
 
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * This class contains information about the menu items in the restaurant
@@ -10,16 +12,20 @@ import javax.persistence.*;
 public class MenuEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Integer number;
     private String category;
     private String name;
     private Float price;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="menu_id",referencedColumnName = "id")
-    private OrderEntity order;
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            },
+            mappedBy = "menu")
+    private Set<OrderEntity> orderEntity = new HashSet<>();
 
 
     public MenuEntity() {
@@ -70,6 +76,14 @@ public class MenuEntity {
 
     public void setNumber(Integer number) {
         this.number = number;
+    }
+
+    public Set<OrderEntity> getOrderEntity() {
+        return orderEntity;
+    }
+
+    public void setOrderEntity(Set<OrderEntity> orderEntity) {
+        this.orderEntity = orderEntity;
     }
 
     @Override
