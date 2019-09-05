@@ -1,7 +1,6 @@
 package com.sda.restaurant.restaurant.model;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -16,12 +15,15 @@ public class OrderEntity {
     @OneToMany
     private Set<MenuEntity> menu;
 
+    private Double totalPrice;
+
     public OrderEntity() {
     }
 
-    public OrderEntity(ReservationEntity reservation, Set<MenuEntity> menu) {
+    public OrderEntity(ReservationEntity reservation, Set<MenuEntity> menu, Double totalPrice) {
         this.reservation = reservation;
         this.menu = menu;
+        this.totalPrice = totalPrice;
     }
 
     public Long getId() {
@@ -46,5 +48,13 @@ public class OrderEntity {
 
     public void setMenu(Set<MenuEntity> menu) {
         this.menu = menu;
+    }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }
