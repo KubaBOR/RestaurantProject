@@ -12,6 +12,8 @@ public class OrderDTO {
 
     private Set<MenuDTO> menu;
 
+    private Double totalPrice;
+
     public OrderDTO() {
     }
 
@@ -37,6 +39,14 @@ public class OrderDTO {
 
     public void setMenu(Set<MenuDTO> menu) {
         this.menu = menu;
+    }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     @Override

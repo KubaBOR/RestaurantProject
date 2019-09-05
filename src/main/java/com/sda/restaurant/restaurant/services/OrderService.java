@@ -34,7 +34,7 @@ public class OrderService {
         this.reservationRepository = reservationRepository;
     }
 
-    public Long addOrder(OrderController.OrderForm orderForm){
+    public Long addOrder(OrderController.OrderForm orderForm) {
 
         ReservationEntity reservationEntity = reservationRepository.getById(orderForm.getReservationId());
         List<Long> menuIds = Arrays.asList(orderForm.getMenuIds());
@@ -44,14 +44,31 @@ public class OrderService {
                 .filter(menuEntity -> menuIds.contains(menuEntity.getId()))
                 .collect(Collectors.toSet());
 
+        Double totalPrice = calculateTotal(orderForm);
+
         OrderEntity orderEntity = new OrderEntity(
                 reservationEntity,
-                menuToSave);
+                menuToSave,
+                totalPrice);
 
 
         return orderRepository.save(orderEntity).getId();
     }
-    public List<OrderDTO> getAllOrders(){
+
+    private Double calculateTotal(OrderController.OrderForm orderForm) {
+
+        ReservationEntity reservationEntity = reservationRepository.getById(orderForm.getReservationId());
+
+        List<Long> menuIds = Arrays.asList(orderForm.getMenuIds());
+
+        return menuRepository.findAll()
+                .stream()
+                .filter(menuEntity -> menuIds.contains(menuEntity.getId()))
+                .mapToDouble(MenuEntity::getPrice)
+                .sum();
+    }
+
+    public List<OrderDTO> getAllOrders() {
         return orderRepository.findAll(Sort.by(Sort.Direction.ASC, "id")).stream()
                 .map(order -> modelMapper.map(order, OrderDTO.class))
                 .collect(Collectors.toList());
@@ -60,5 +77,7 @@ public class OrderService {
     /*public Set<Long> getAllOrderMenuItems(OrderController.OrderForm orderForm){
         return orderForm.getMenuIds();
     }*/
-    public void deleteOrderById(Long id) { orderRepository.deleteById(id);}
+    public void deleteOrderById(Long id) {
+        orderRepository.deleteById(id);
+    }
 }
