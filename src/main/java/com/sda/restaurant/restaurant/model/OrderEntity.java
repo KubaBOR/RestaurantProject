@@ -24,6 +24,8 @@ public class OrderEntity {
     private Set<MenuEntity> menu = new HashSet<>();
 
     private Double totalPrice;
+    private Boolean isPaid;
+    private Float tip;
 
     public OrderEntity() {
     }
@@ -64,5 +66,21 @@ public class OrderEntity {
 
     public void setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public Boolean getPaid() {
+        return isPaid;
+    }
+
+    public void setPaid(Boolean paid) {
+        isPaid = paid;
+    }
+
+    public Float getTip() {
+        return tip;
+    }
+
+    public void setTip(Float tip) {
+        this.tip = tip;
     }
 }

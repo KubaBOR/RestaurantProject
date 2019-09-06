@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
 
-    /*@Query("SELECT SUM(o.menu) from OrderEntity o")
-    int getById();*/
+    OrderEntity getById(Long id);
 
 }

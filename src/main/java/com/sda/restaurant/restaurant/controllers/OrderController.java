@@ -52,13 +52,22 @@ public class OrderController {
         return redirectView;
     }
 
-//    @PutMapping("/orders/{id}")
-//    public RedirectView updateOrder(@PathVariable Long id){
-//        orderService.updateStuff(id);
-//        RedirectView redirectView = new RedirectView();
-//        redirectView.setUrl("/allOrdersPage");
-//        return redirectView;
-//    }
+    // copy to orders
+    @PutMapping("/setPaid/{id}")
+    public RedirectView setPaidOrder(@PathVariable Long id) {
+        orderService.setPaidOrder(id);
+        RedirectView redirectView = new RedirectView();
+        redirectView.setUrl("/allOrdersPage");
+        return redirectView;
+    }
+    @PostMapping("/setTipAmount/{id}")
+    public RedirectView updateTipAmount(@PathVariable Long id, @RequestParam Float tip) {
+        orderService.updateTipAmount(id, tip);
+        RedirectView redirectView = new RedirectView();
+        redirectView.setUrl("/allOrdersPage");
+        return redirectView;
+    }
+    //end of.
 
     private void setupModel(Model model) {
         List<ReservationDTO> allReservations = reservationService.getAllReservations();

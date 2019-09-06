@@ -9,6 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 </head>
 <body class="bgmain">
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -24,8 +25,6 @@
                 <thead>
                 <tr>
                     <th>Date and Time</th>
-                    <!--                    <th>is Paid?</th>-->
-                    <th>Tip amount</th>
                     <th>Table</th>
                     <th>Client</th>
                 </tr>
@@ -33,22 +32,9 @@
                 <tbody>
                 <tr th:each="reservation: ${allReservations}">
                     <td th:text="${reservation.dateAndTime}"></td>
-                    <!--                    <td th:text="${reservation.Paid} ? 'Paid' : 'Not Paid'"></td>-->
-                    <td width="150px" th:if="!${reservation.tip}">
-                            <form action="#"
-                                  th:action="@{'/setTipAmount/{id}' (id=${reservation.id})}" th:object="${reservationForm}"
-                                  th:method="post">
-                        <div class="input-group mb-3">
-                                <input id="tip" class="form-control" type="text" placeholder="0.00" th:field="${reservationForm.tip}" th:value="${reservationForm.tip}"/>
-                            <div class="input-group-append">
-                                <input type="submit" value="Give tip" class="btn btn-outline-success">
-                            </div>
-                        </div>
-                            </form>
-
+                    <td>
+                        <button class="btn btn-outline-dark" th:text="${reservation.tables.id}"/>
                     </td>
-                    <td th:if="${reservation.tip}" th:text="${reservation.tip}"></td>
-                    <td> <button class="btn btn-outline-dark" th:text="${reservation.tables.id}"/></td>
 
                     <td th:text="${reservation.client.name} + ' '
                     + ${reservation.client.surname}"></td>
@@ -56,20 +42,10 @@
                     <td>
                         <form action="#" th:action="@{'/deleteReservationAction/{id}'(id=${reservation.id})}"
                               th:method="delete">
-                            <input type="hidden" name="_method" value="delete"/>
-                            <input type="submit" class="btn btn-outline-danger" value="Delete">
+                            <button class="btn btn-outline-danger" type="submit"
+                                    style='font-size:18px'><i class='far fa-trash-alt'></i></button>
                         </form>
                     </td>
-
-                    <td>
-                        <form action="#" th:unless="${reservation.Paid}"
-                              th:action="@{'/reservations/{id}'(id=${reservation.id})}" th:object="${reservationForm}"
-                              th:method="post">
-                            <input type="hidden" name="_method" value="put"/>
-                            <input type="submit" class="btn btn-outline-success" value="Confirm Payment">
-                        </form>
-                    </td>
-
                 </tr>
                 </tbody>
             </table>
@@ -88,9 +64,6 @@
                     <label for="dateAndTime">Date and Time</label>
                     <input id="dateAndTime" class="form-control"
                            type="datetime-local" th:field="${reservationForm.dateAndTime}"/>
-
-                    <!--<input type="hidden" th:field="${reservationForm.occupied}"/>-->
-
 
                     <legend>Select Client</legend>
                     <select th:field="${reservationForm.clientId}" name="client">
