@@ -43,7 +43,7 @@ public class TableController {
 
     @DeleteMapping("/deleteTableAction/{deleteTableId}")
     public RedirectView deleteTable(@PathVariable List<Long> deleteTableId){
-        tableService.updateTableToNotOccupied(deleteTableId);
+       // tableService.updateTableToNotOccupied(deleteTableId);
         tableService.deleteTableById(deleteTableId);
         RedirectView redirectView = new RedirectView();
         redirectView.setUrl("/tablesPage");

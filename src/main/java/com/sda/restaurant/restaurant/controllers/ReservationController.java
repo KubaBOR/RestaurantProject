@@ -73,7 +73,7 @@ public class ReservationController {
 
 
 
-        tableService.updateTableToNotOccupied(tablesIds);
+        //tableService.updateTableToNotOccupied(tablesIds);
 
 
 
