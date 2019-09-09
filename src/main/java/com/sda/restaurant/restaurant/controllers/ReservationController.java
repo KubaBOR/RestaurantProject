@@ -1,6 +1,7 @@
 package com.sda.restaurant.restaurant.controllers;
 
 import com.sda.restaurant.restaurant.DTO.ReservationDTO;
+import com.sda.restaurant.restaurant.DTO.TablesDTO;
 import com.sda.restaurant.restaurant.form.ReservationForm;
 import com.sda.restaurant.restaurant.model.ReservationEntity;
 import com.sda.restaurant.restaurant.repositories.ReservationRepository;
@@ -16,6 +17,8 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Controller
 public class ReservationController {
@@ -45,7 +48,7 @@ public class ReservationController {
     @PostMapping("/addReservationAction")
     public RedirectView addNewReservation(@ModelAttribute("reservationForm") ReservationForm reservationForm, Model model) {
         reservationService.saveReservation(reservationForm);
-        tableService.updateTableToOccupied(reservationForm.getTablesId());
+        tableService.updateTableToOccupied(reservationForm.getTableIds());
         RedirectView redirectView = new RedirectView();
         redirectView.setUrl("/allReservationsPage");
         return redirectView;
@@ -62,7 +65,18 @@ public class ReservationController {
 
     @DeleteMapping("/deleteReservationAction/{id}")
     public RedirectView deleteReservation(@PathVariable Long id) {
-        tableService.updateTableToNotOccupied(reservationService.getReservationById(id).getTables().getId());
+        Set<TablesDTO> tables = reservationService.getReservationById(id).getTables();
+        List<Long> tablesIds = tables.stream()
+                .map(TablesDTO::getId)
+                .distinct()
+                .collect(Collectors.toList());
+
+
+
+        tableService.updateTableToNotOccupied(tablesIds);
+
+
+
         reservationService.deleteReservationById(id);
         RedirectView redirectView = new RedirectView();
         redirectView.setUrl("/allReservationsPage");

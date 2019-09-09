@@ -1,7 +1,6 @@
 package com.sda.restaurant.restaurant.controllers;
 
 import com.sda.restaurant.restaurant.DTO.TablesDTO;
-import com.sda.restaurant.restaurant.model.TablesEntity;
 import com.sda.restaurant.restaurant.services.TableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +26,7 @@ public class TableController {
         return "tablesPage";
     }
     @PostMapping("/updateTableToOccupied/{id}")
-    public RedirectView updateTableToOccupied(@PathVariable Long id){
+    public RedirectView updateTableToOccupied(@PathVariable Long[] id){
         tableService.updateTableToOccupied(id);
         RedirectView redirectView = new RedirectView();
         redirectView.setUrl("allReservationsPage");
@@ -43,7 +42,7 @@ public class TableController {
     }
 
     @DeleteMapping("/deleteTableAction/{deleteTableId}")
-    public RedirectView deleteTable(@PathVariable Long deleteTableId){
+    public RedirectView deleteTable(@PathVariable List<Long> deleteTableId){
         tableService.updateTableToNotOccupied(deleteTableId);
         tableService.deleteTableById(deleteTableId);
         RedirectView redirectView = new RedirectView();

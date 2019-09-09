@@ -1,8 +1,8 @@
 package com.sda.restaurant.restaurant.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -17,9 +17,8 @@ public class TablesEntity {
     private int size;
     private Boolean occupied;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="table_id",referencedColumnName = "id")
-    private ReservationEntity reservationEntity;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "tables")
+    private Set<ReservationEntity> reservationEntity = new HashSet<>();
 
     public TablesEntity() {
     }
@@ -46,10 +45,6 @@ public class TablesEntity {
         this.size = size;
     }
 
-    public ReservationEntity getReservationEntity() {
-        return reservationEntity;
-    }
-
     public Boolean getOccupied() {
         return occupied;
     }
@@ -58,7 +53,11 @@ public class TablesEntity {
         this.occupied = occupied;
     }
 
-    public void setReservationEntity(ReservationEntity reservationEntity) {
+    public Set<ReservationEntity> getReservationEntity() {
+        return reservationEntity;
+    }
+
+    public void setReservationEntity(Set<ReservationEntity> reservationEntity) {
         this.reservationEntity = reservationEntity;
     }
 }

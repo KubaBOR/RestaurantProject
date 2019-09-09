@@ -48,7 +48,8 @@
 
                     </td>
                     <td th:if="${reservation.tip}" th:text="${reservation.tip}"></td>
-                    <td> <button class="btn btn-outline-dark" th:text="${reservation.tables.id}"/></td>
+                    <td> <button class="btn btn-outline-dark" th:each="table: ${reservation.tables}"
+                    th:text=" ${table.id}"/></td>
 
                     <td th:text="${reservation.client.name} + ' '
                     + ${reservation.client.surname}"></td>
@@ -100,12 +101,20 @@
                     </select>
 
                     <legend>Select Table</legend>
-                    <select th:field="${reservationForm.tablesId}" name="tables">
-                        <option th:if="!${tables.occupied}"
-                                th:each="tables : ${allTables}"
-                                th:value="${tables.getId()}"
-                                th:text="${tables.size} + ' seats'"/>
-                    </select>
+                    <div th:each="table : ${allTables}">
+                        <input type="checkbox"
+                               id="chosenTable"
+                               th:field="${reservationForm.tableIds}"
+                               th:value="${table.id}"
+                               th:text="${table.size}">
+                    </div>
+
+<!--                    <select th:field="${reservationForm.tablesId}" name="tables">-->
+<!--                        <option th:if="!${tables.occupied}"-->
+<!--                                th:each="tables : ${allTables}"-->
+<!--                                th:value="${tables.getId()}"-->
+<!--                                th:text="${tables.size} + ' seats'"/>-->
+<!--                    </select>-->
 
 
                 </div>

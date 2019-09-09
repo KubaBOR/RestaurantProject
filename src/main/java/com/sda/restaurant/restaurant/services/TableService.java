@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,11 +37,13 @@ public class TableService {
                 .map(tables -> modelMapper.map(tables, TablesDTO.class))
                 .collect(Collectors.toList());
     }
-    public TablesDTO updateTableToOccupied(Long tableId){
-        TablesEntity foundTable = tableRepository.getOne(tableId);
-        foundTable.setOccupied(true);
-        tableRepository.save(foundTable);
-        return modelMapper.map(foundTable,TablesDTO.class);
+    public void updateTableToOccupied(Long[] tableId){
+        List<Long>tablesToSetOccupied = Arrays.asList(tableId);
+        List<TablesEntity> foundTables = tableRepository.findAllById(tablesToSetOccupied);
+        foundTables.forEach(p->p.setOccupied(true));
+        foundTables.forEach(tableRepository::save);
+        foundTables.forEach(p->modelMapper.map(p,TablesDTO.class));
+
     }
     public TablesDTO updateTableToNotOccupied(Long tableId){
         TablesEntity foundTable = tableRepository.getOne(tableId);
@@ -55,8 +58,8 @@ public class TableService {
                 .map(tables -> modelMapper.map(tables, TablesDTO.class))
                 .collect(Collectors.toList());
     }*/
-    public void deleteTableById(Long id){
-        tableRepository.deleteById(id);
+    public void deleteTableById(List<Long> id){
+        tableRepository.findAllById(id).forEach(tableRepository::delete);
     }
 
     @PostConstruct

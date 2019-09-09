@@ -12,7 +12,7 @@ public class ReservationForm {
     private Boolean occupied;
 
     private Long clientId;
-    private Long tablesId;
+    private Long[] tableIds;
 
     public ReservationForm() {
 
@@ -50,12 +50,12 @@ public class ReservationForm {
         this.tip = tip;
     }
 
-    public Long getTablesId() {
-        return tablesId;
+    public Long[] getTableIds() {
+        return tableIds;
     }
 
-    public void setTablesId(Long tablesId) {
-        this.tablesId = tablesId;
+    public void setTableIds(Long[] tableIds) {
+        this.tableIds = tableIds;
     }
 
     public Boolean getOccupied() {
