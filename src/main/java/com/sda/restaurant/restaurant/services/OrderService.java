@@ -55,6 +55,20 @@ public class OrderService {
         return orderRepository.save(orderEntity).getId();
     }
 
+    public OrderDTO setPaidOrder(Long id) {
+        OrderEntity getOrder = orderRepository.getById(id);
+        getOrder.setPaid(true);
+        orderRepository.save(getOrder);
+        return modelMapper.map(getOrder, OrderDTO.class);
+    }
+
+    public OrderDTO updateTipAmount(Long id, Float tipAmount) {
+        OrderEntity getOrder = orderRepository.getById(id);
+        getOrder.setTip(tipAmount);
+        orderRepository.save(getOrder);
+        return modelMapper.map(getOrder, OrderDTO.class);
+    }
+
     private Double calculateTotal(OrderForm orderForm) {
 
         ReservationEntity reservationEntity = reservationRepository.getById(orderForm.getReservationId());

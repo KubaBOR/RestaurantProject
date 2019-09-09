@@ -1,7 +1,6 @@
 package com.sda.restaurant.restaurant.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -18,8 +17,6 @@ public class ReservationEntity {
     @DateTimeFormat(pattern = "dd/MM/yyyy''hh:mm")
     private LocalDateTime dateAndTime;
 
-    private Boolean isPaid;
-    private Float tip;
     private Boolean occupied;
 
     @OneToOne //(cascade = CascadeType.ALL)
@@ -53,22 +50,6 @@ public class ReservationEntity {
 
     public void setDateAndTime(LocalDateTime dateAndTime) {
         this.dateAndTime = dateAndTime;
-    }
-
-    public Boolean getPaid() {
-        return isPaid;
-    }
-
-    public void setPaid(Boolean paid) {
-        isPaid = paid;
-    }
-
-    public Float getTip() {
-        return tip;
-    }
-
-    public void setTip(Float tip) {
-        this.tip = tip;
     }
 
     public OrderEntity getOrder() {

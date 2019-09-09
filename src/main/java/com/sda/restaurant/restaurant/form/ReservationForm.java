@@ -7,8 +7,7 @@ import java.time.LocalDateTime;
 public class ReservationForm {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime dateAndTime;
-    private Boolean isPaid = false;
-    private Float tip;
+
     private Boolean occupied;
 
     private Long clientId;
@@ -32,22 +31,6 @@ public class ReservationForm {
 
     public void setDateAndTime(LocalDateTime dateAndTime) {
         this.dateAndTime = dateAndTime;
-    }
-
-    public Boolean getPaid() {
-        return isPaid;
-    }
-
-    public void setPaid(Boolean paid) {
-        isPaid = paid;
-    }
-
-    public Float getTip() {
-        return tip;
-    }
-
-    public void setTip(Float tip) {
-        this.tip = tip;
     }
 
     public Long[] getTableIds() {
