@@ -11,7 +11,7 @@ public class ReservationForm {
     private Boolean occupied;
 
     private Long clientId;
-    private Long tablesId;
+    private Long[] tablesId;
 
     public ReservationForm() {
 
@@ -33,11 +33,11 @@ public class ReservationForm {
         this.dateAndTime = dateAndTime;
     }
 
-    public Long getTablesId() {
+    public Long[] getTablesId() {
         return tablesId;
     }
 
-    public void setTablesId(Long tablesId) {
+    public void setTablesId(Long[] tablesId) {
         this.tablesId = tablesId;
     }
 

@@ -42,19 +42,15 @@ public class TableService {
         tableRepository.save(foundTable);
         return modelMapper.map(foundTable,TablesDTO.class);
     }
-    public TablesDTO updateTableToNotOccupied(Long tableId){
-        TablesEntity foundTable = tableRepository.getOne(tableId);
-        foundTable.setOccupied(false);
-        tableRepository.save(foundTable);
-        return modelMapper.map(foundTable,TablesDTO.class);
+    public TablesDTO updateTableToNotOccupied(Long[] tableId){
+        List<TablesEntity> getTables = tableRepository.findAll();
+        for (TablesEntity tables : getTables){
+            tables.setOccupied(false);
+        }
+        tableRepository.saveAll(getTables);
+        return modelMapper.map(getTables,TablesDTO.class);
     }
 
-    /*public List<TablesDTO> getAllUnoccupiedTables(){
-        return tableRepository.findAll(Sort.by(Sort.Direction.ASC,"size")).stream()
-                .filter(tablesEntity -> !tablesEntity.getOccupied())
-                .map(tables -> modelMapper.map(tables, TablesDTO.class))
-                .collect(Collectors.toList());
-    }*/
     public void deleteTableById(Long id){
         tableRepository.deleteById(id);
     }

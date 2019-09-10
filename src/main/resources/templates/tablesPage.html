@@ -27,14 +27,17 @@
                 <tr>
                     <th>Id</th>
                     <th>Size</th>
-                    <th>Is occupied?</th>
+                    <th>Reservation</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="tables: ${allTables}">
                     <td th:text="${tables.id}"></td>
                     <td th:text="${tables.size}"></td>
-                    <td th:text="${tables.occupied}"></td>
+                    <td>
+                        <button class="btn btn-outline-secondary" th:if="${tables.occupied}" th:text="RESERVED"/>
+                        <button class="btn btn-success" th:if="!${tables.occupied}" th:text="AVAILABLE"/>
+                    </td>
                     <td>
                         <form action="#" th:action="@{'/deleteTableAction/{id}'(id=${tables.id})}" th:method="delete">
                             <button class="btn btn-outline-danger" type="submit"

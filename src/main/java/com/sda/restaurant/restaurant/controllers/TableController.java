@@ -42,15 +42,6 @@ public class TableController {
         return redirectView;
     }
 
-    @DeleteMapping("/deleteTableAction/{deleteTableId}")
-    public RedirectView deleteTable(@PathVariable Long deleteTableId){
-        tableService.updateTableToNotOccupied(deleteTableId);
-        tableService.deleteTableById(deleteTableId);
-        RedirectView redirectView = new RedirectView();
-        redirectView.setUrl("/tablesPage");
-        return redirectView;
-    }
-
     private void setupModel(Model model){
         List<TablesDTO> allTables = tableService.getAllTables();
 //        List<TablesDTO> allUnoccupiedTables = tableService.getAllUnoccupiedTables();

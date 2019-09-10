@@ -45,7 +45,6 @@ public class ReservationController {
     @PostMapping("/addReservationAction")
     public RedirectView addNewReservation(@ModelAttribute("reservationForm") ReservationForm reservationForm, Model model) {
         reservationService.saveReservation(reservationForm);
-        tableService.updateTableToOccupied(reservationForm.getTablesId());
         RedirectView redirectView = new RedirectView();
         redirectView.setUrl("/allReservationsPage");
         return redirectView;
@@ -62,7 +61,6 @@ public class ReservationController {
 
     @DeleteMapping("/deleteReservationAction/{id}")
     public RedirectView deleteReservation(@PathVariable Long id) {
-        tableService.updateTableToNotOccupied(reservationService.getReservationById(id).getTables().getId());
         reservationService.deleteReservationById(id);
         RedirectView redirectView = new RedirectView();
         redirectView.setUrl("/allReservationsPage");

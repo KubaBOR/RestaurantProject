@@ -3,6 +3,8 @@ package com.sda.restaurant.restaurant.model;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -13,16 +15,13 @@ public class ReservationEntity {
     @DateTimeFormat(pattern = "dd/MM/yyyy''hh:mm")
     private LocalDateTime dateAndTime;
 
-    private Boolean occupied;
-// todo - klucz obcy id klienta
-// todo - klucz obcy id tables
-
-    //todo - fix
-    @OneToOne //(cascade = CascadeType.ALL)
+    @OneToOne
     private ClientEntity client;
 
-    @OneToOne
-    private TablesEntity tables;
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinTable(joinColumns = {@JoinColumn},
+    inverseJoinColumns = {@JoinColumn})
+    private Set<TablesEntity> tables = new HashSet<>();
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="reservation_id",referencedColumnName = "id")
@@ -30,6 +29,12 @@ public class ReservationEntity {
 
 
     public ReservationEntity() {
+    }
+
+    public ReservationEntity(LocalDateTime dateAndTime, ClientEntity client, Set<TablesEntity> tables) {
+        this.dateAndTime = dateAndTime;
+        this.client = client;
+        this.tables = tables;
     }
 
     public Long getId() {
@@ -64,19 +69,12 @@ public class ReservationEntity {
         this.client = client;
     }
 
-    public TablesEntity getTables() {
+    public Set<TablesEntity> getTables() {
         return tables;
     }
 
-    public void setTables(TablesEntity tables) {
+    public void setTables(Set<TablesEntity> tables) {
         this.tables = tables;
     }
 
-    public Boolean getOccupied() {
-        return occupied;
-    }
-
-    public void setOccupied(Boolean occupied) {
-        this.occupied = occupied;
-    }
 }

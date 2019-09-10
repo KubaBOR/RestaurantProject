@@ -33,7 +33,11 @@
                 <tr th:each="reservation: ${allReservations}">
                     <td th:text="${reservation.dateAndTime}"></td>
                     <td>
-                        <button class="btn btn-outline-dark" th:text="${reservation.tables.id}"/>
+                        <button class="btn btn-outline-dark">
+                        <div th:each="table: ${reservation.tables}">
+                            <span th:text="${table.id}"></span>
+                        </div>
+                        </button>
                     </td>
 
                     <td th:text="${reservation.client.name} + ' '
@@ -73,13 +77,14 @@
                     </select>
 
                     <legend>Select Table</legend>
-                    <select th:field="${reservationForm.tablesId}" name="tables">
-                        <option th:if="!${tables.occupied}"
-                                th:each="tables : ${allTables}"
-                                th:value="${tables.getId()}"
-                                th:text="${tables.size} + ' seats'"/>
-                    </select>
-
+                    <div th:each="table : ${allTables}">
+                        <input type="checkbox"
+                               id="chosenTables"
+                               th:if="!${table.occupied}"
+                               th:field="${reservationForm.tablesId}"
+                               th:value="${table.id}"
+                               th:text="${table.size} + ' seats'"/>
+                    </div>
 
                 </div>
                 <div class="form-group text-center">

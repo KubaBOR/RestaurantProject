@@ -2,6 +2,7 @@ package com.sda.restaurant.restaurant.DTO;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 public class ReservationDTO {
 
@@ -11,7 +12,7 @@ public class ReservationDTO {
     private LocalDateTime dateAndTime;
 
     private ClientDTO client;
-    private TablesDTO tables;
+    private Set<TablesDTO> tables;
     private Boolean occupied = true;
 
     public ReservationDTO() {
@@ -41,11 +42,11 @@ public class ReservationDTO {
         this.client = client;
     }
 
-    public TablesDTO getTables() {
+    public Set<TablesDTO> getTables() {
         return tables;
     }
 
-    public void setTables(TablesDTO tables) {
+    public void setTables(Set<TablesDTO> tables) {
         this.tables = tables;
     }
 
