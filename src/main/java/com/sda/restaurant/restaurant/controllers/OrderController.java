@@ -1,6 +1,5 @@
 package com.sda.restaurant.restaurant.controllers;
 
-import com.sda.restaurant.restaurant.DTO.OrderDTO;
 import com.sda.restaurant.restaurant.DTO.ReservationDTO;
 import com.sda.restaurant.restaurant.form.OrderForm;
 import com.sda.restaurant.restaurant.repositories.OrderRepository;

@@ -19,14 +19,8 @@ public class MenuEntity {
     private String name;
     private Float price;
 
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            },
-            mappedBy = "menu")
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,CascadeType.MERGE}, mappedBy = "menu")
     private Set<OrderEntity> orderEntity = new HashSet<>();
-
 
     public MenuEntity() {
     }
