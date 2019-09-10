@@ -34,9 +34,9 @@
                     <td th:text="${reservation.dateAndTime}"></td>
                     <td>
                         <button class="btn btn-outline-dark">
-                        <div th:each="table: ${reservation.tables}">
-                            <span th:text="${table.id}"></span>
-                        </div>
+                            <div th:each="table: ${reservation.tables}">
+                                <span th:text="${table.id}"></span>
+                            </div>
                         </button>
                     </td>
 
